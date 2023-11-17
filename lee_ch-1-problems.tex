@@ -1,0 +1,470 @@
+\documentclass[11pt]{article}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{adjustbox}
+\usepackage{mathrsfs}
+\usepackage{graphicx}
+\usepackage{siunitx}
+\usepackage[mathscr]{euscript}
+
+
+\title{\textbf{Solutions to selected problems on Introduction to Topological Manifolds - John M. Lee.}}
+\author{Franco Zacco}
+\date{}
+
+\addtolength{\topmargin}{-3cm}
+\addtolength{\textheight}{3cm}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\diam}{\text{diam}}
+\newcommand{\cl}{\text{cl}}
+\newcommand{\bdry}{\text{bdry}}
+\newcommand{\inter}{\text{Int}}
+\newcommand{\ext}{\text{Ext}}
+\newcommand{\Pow}{\mathcal{P}}
+\newcommand{\Topo}{\mathcal{T}}
+\newcommand{\Or}{\text{ or }}
+\newcommand{\setmin}{\setminus}
+
+
+\theoremstyle{definition}
+\newtheorem*{solution*}{Solution}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\section*{Chapter 2 - Topological Spaces}
+
+\subsection*{Problems}
+
+\begin{proof}{\textbf{2-1}}
+    \begin{itemize}
+    \item [(a)] We want to show that
+    $\Topo_1 = \{U \subseteq X: U = \emptyset \text{ or }X \setminus U \text{ is finite}\}$
+    is a topology on $X$.
+        \begin{itemize}
+            \item [(i)] By definition $\emptyset$ is in $\Topo_1$. If $U = X$
+            then $X \setminus X = \emptyset$ and $\emptyset$ is finite then
+            $X \in \Topo_1$.
+            \item [(ii)] Let $U_1, ..., U_n$ be elements of $\Topo_1$ such that
+            $U_i = \emptyset$ or $X \setminus U_i$ is finite for every
+            $i$. Also, we see that 
+            $$X \setminus (U_1 \cap ... \cap U_n)
+            = (X \setminus U_1) \cup ... \cup (X \setminus U_n)$$
+            And the finite union of finite sets is 
+            itself a finite set hence $U_1 \cap ... \cap U_n \in \Topo_1$.
+            We assumed that not all of the elements are empty,  but otherwise
+            we already saw that $\emptyset \in \Topo_1$.
+            \item [(iii)] Let $(U_\alpha)_{\alpha \in A}$ be a family of
+            elements of $\Topo_1$  such that
+            $U_i = \emptyset$ or $X \setminus U_i$ is finite for every
+            $i$. Also, we have that
+            $$X \setminus \bigcup_{\alpha \in A} U_\alpha
+            = \bigcap_{\alpha \in A} X \setminus U_\alpha$$
+            So this is the intersection between finite sets then itself it's
+            a finite set hence $\bigcup_{\alpha \in A} U_\alpha \in \Topo_1$.
+        \end{itemize} 
+        Therefore $\Topo_1$ is a topology on $X$.
+        \item [(b)] We want to show that
+        $\Topo_2 = \{U \subseteq X: U = \emptyset \text{ or }X \setminus U \text{ is countable}\}$
+        is a topology on $X$.
+            \begin{itemize}
+                \item [(i)] By definition $\emptyset$ is in $\Topo_2$. If $U = X$
+                then $X \setminus X = \emptyset$ and $\emptyset$ is countable then
+                $X \in \Topo_2$.
+                \item [(ii)] Let $U_1, ..., U_n$ be elements of $\Topo_2$ such that
+                $U_i = \emptyset$ or $X \setminus U_i$ is countable for every
+                $i$. Also, we see that 
+                $$X \setminus (U_1 \cap ... \cap U_n)
+                = (X \setminus U_1) \cup ... \cup (X \setminus U_n)$$
+                And the finite union of countable sets is 
+                itself a countable set hence $U_1 \cap ... \cap U_n \in \Topo_2$.
+                We assumed that not all of the elements are empty,  but otherwise
+                we already saw that $\emptyset \in \Topo_2$.
+                \item [(iii)] Let $(U_\alpha)_{\alpha \in A}$ be a family of
+                elements of $\Topo_2$  such that
+                $U_i = \emptyset$ or $X \setminus U_i$ is countable for every
+                $i$. Also, we have that
+                $$X \setminus \bigcup_{\alpha \in A} U_\alpha
+                = \bigcap_{\alpha \in A} X \setminus U_\alpha$$
+                So this is the intersection between countable sets then itself
+                it's a countable set hence
+                $\bigcup_{\alpha \in A} U_\alpha \in \Topo_2$.
+            \end{itemize} 
+            Therefore $\Topo_2$ is a topology on $X$.    
+        \item [(c)] We want to show that
+        $\Topo_3 = \{U \subseteq X: U = \emptyset \text{ or }p \in U\}$
+        is a topology on $X$.
+            \begin{itemize}
+                \item [(i)] By definition $\emptyset$ is in $\Topo_3$.
+                Since $p \in X$ by definition then $X \in \Topo_3$.
+                \item [(ii)] Let $U_1, ..., U_n$ be elements of $\Topo_3$ such that
+                $U_i = \emptyset$ or $p \in U_i$ for every $i$ then 
+                $U_1 \cap ... \cap U_n$ at least have the element $p$ in
+                common so $U_1 \cap ... \cap U_n \in \Topo_3$.
+                This result is true assuming not every $U_i = \emptyset$
+                otherwise $U_1 \cap ... \cap U_n = \emptyset$ and we saw
+                that $\emptyset \in \Topo_3$ so anyway 
+                $U_1 \cap ... \cap U_n \in \Topo_3$.
+                \item [(iii)] Let $(U_\alpha)_{\alpha \in A}$ be a family of
+                elements of $\Topo_3$  such that
+                $U_i = \emptyset$ or $p \in U_i$ for every $i$. Then
+                assuming not every $U_i = \emptyset$ we have that
+                $p \in \bigcup_{\alpha \in A} U_\alpha$ which implies that
+                $\bigcup_{\alpha \in A} U_\alpha \in \Topo_3$. If every
+                $U_i = \emptyset$ then $\bigcup_{\alpha \in A} U_\alpha = \emptyset$
+                and we saw that $\emptyset \in \Topo_3$ so anyway 
+                $\bigcup_{\alpha \in A} U_\alpha \in \Topo_3$.
+            \end{itemize} 
+        Therefore $\Topo_3$ is a topology on $X$.        
+        \item [(d)] We want to show that
+        $\Topo_4 = \{U \subseteq X: U = X \text{ or }p \not\in U\}$
+        is a topology on $X$.
+            \begin{itemize}
+                \item [(i)] By definition $X$ is in $\Topo_4$.
+                Since $p \not\in \emptyset$ then $\emptyset \in \Topo_4$.
+                \item [(ii)] Let $U_1, ..., U_n$ be elements of $\Topo_4$
+                such that $U_i = X$ or $p \not\in U_i$ for every $i$ then 
+                $p$ is not in $U_1 \cap ... \cap U_n$.
+                This result is true assuming not every $U_i = X$
+                otherwise $U_1 \cap ... \cap U_n = X$ and we saw
+                that $X \in \Topo_4$ so anyway 
+                $U_1 \cap ... \cap U_n \in \Topo_4$.
+                \item [(iii)] Let $(U_\alpha)_{\alpha \in A}$ be a family of
+                elements of $\Topo_4$  such that
+                $U_i = X$ or $p \not\in U_i$ for every $i$. Then
+                assuming no $U_i = X$ we have that
+                $p \not\in \bigcup_{\alpha \in A} U_\alpha$ which implies that
+                $\bigcup_{\alpha \in A} U_\alpha \in \Topo_4$. If some
+                $U_i = X$ then $\bigcup_{\alpha \in A} U_\alpha = X$
+                and we saw that $X \in \Topo_4$ so anyway 
+                $\bigcup_{\alpha \in A} U_\alpha \in \Topo_4$.
+            \end{itemize} 
+        Therefore $\Topo_4$ is a topology on $X$.
+        \item [(e)] We want to determine if
+        $\Topo_5 = \{U \subseteq X: U = X \Or X \setminus U \text{ is infinite}\}$
+        is a topology on $X$.
+        If we let $X = \Z$ then $\Z^+ \in \Topo_5$ and $\Z^- \in \Topo_5$ but
+        $\Z \setmin (\Z^+ \cup \Z^-) = \{0\}$ but $\{0\}$ is finite so
+        $(\Z^+ \cup \Z^-) \not\in \Topo_5$. Therefore $\Topo_5$ is not 
+        a topology on $X$.
+    \end{itemize}
+\end{proof}
+\cleardoublepage
+\begin{proof}{\textbf{2-3}}
+    \begin{itemize}
+    \item [(a)]
+    Let $x \in \overline{X \setmin B}$ then for every neighborhood $U$ where
+    $x \in U$ contains a point of $X \setmin B$ this implies that no
+    neighborhood that contains $x$ is in $\inter(B)$ hence 
+    $x \in X \setmin \inter(B)$ and
+    $\overline{X \setmin B} \subseteq X \setmin \inter(B)$.
+
+    Let $x \in X \setmin \inter(B)$ then $x \not\in \inter(B)$ so there is no 
+    neighborhood of $x$ contained in $B$ then for every neighborhood $U$ that
+    contains $x$ we have that $U \cap X \setmin B \neq \emptyset$ hence
+    $x \in \overline{X \setmin B}$ and
+    $X \setmin \inter(B) \subseteq \overline{X \setmin B}$.
+
+    Therefore $\overline{X \setmin B} = X \setmin \inter(B)$.
+
+    \item [(b)]
+    Let $ x \in \inter(X \setmin B)$ then $x$ has a neighborhood contained in
+    $X \setmin B$ but then $x$ is also in $\ext(B) = X \setmin \overline{B}$
+    then $\inter(X \setmin B) \subseteq X \setmin \overline{B}$.
+
+    In the same way if $x \in X \setmin \overline{B} = \ext(B)$ then it has a
+    neighborhood in $X \setmin B$ hence $X \setmin B$ is open and hence
+    $x \in \inter(X \setmin B)$ this implies that
+    $ X \setmin \overline{B} \subseteq \inter(X \setmin B)$.
+    
+    Therefore $\inter(X \setmin B) = X \setmin \overline{B}$.
+    \end{itemize}
+\end{proof}
+\cleardoublepage
+\begin{proof}{\textbf{2-4}}
+    \begin{itemize}
+    \item [(a)] We know that $\bigcap_{A \in \mathcal{A}} \overline{A}$ is 
+    a closed set where
+    $\bigcap_{A \in \mathcal{A}} A \subseteq \bigcap_{A \in \mathcal{A}} \overline{A}$
+    but also we know that the closure of $\bigcap_{A \in \mathcal{A}} A$ is the
+    smallest closed set containing $\bigcap_{A \in \mathcal{A}} A$. Therefore
+    it must happen that
+    $\overline{\bigcap_{A \in \mathcal{A}} A} \subseteq \bigcap_{A \in \mathcal{A}} \overline{A}$.
+
+    Let $\mathcal{A} = \{(0,1), (1, 2)\}$ where they are intervals of $\R$ then
+    $\bigcap_{A \in \mathcal{A}} \overline{A} = \{1\}$ and
+    $\overline{\bigcap_{A \in \mathcal{A}} A} = \emptyset$ so we see that
+    $\bigcap_{A \in \mathcal{A}} \overline{A}
+    \not\subseteq \overline{\bigcap_{A \in \mathcal{A}} A}$. Therefore when
+    $\mathcal{A}$ is a finite collection the equality is not preserved.
+
+    \item [(b)] We know that $A \subseteq \bigcup_{A \in \mathcal{A}} A$ then
+    $A \subseteq \overline{\bigcup_{A \in \mathcal{A}} A}$ also
+    $\overline{A} \subseteq \overline{\bigcup_{A \in \mathcal{A}} A}$ therefore
+    $$\bigcup_{A \in \mathcal{A}} \overline{A}
+    \subseteq \overline{\bigcup_{A \in \mathcal{A}} A}$$
+
+    Let us assume now that $\mathcal{A}$ is a finite collection. Then
+    we see that $\bigcup_{A \in \mathcal{A}} \overline{A}$ is a closed set 
+    and that
+    $\bigcup_{A \in \mathcal{A}} A
+    \subseteq \bigcup_{A \in \mathcal{A}} \overline{A}$
+    but also we know that $\overline{\bigcup_{A \in \mathcal{A}} A}$ is the
+    smallest closed set that contains $\bigcup_{A \in \mathcal{A}} A$ therefore
+    it must happen that 
+    $$\overline{\bigcup_{A \in \mathcal{A}} A}
+    \subseteq \bigcup_{A \in \mathcal{A}} \overline{A}$$
+    Hence the equality holds when $\mathcal{A}$ is a finite collection.
+
+    \item [(c)] Let $x \in \inter(\bigcap_{A \in \mathcal{A}} A)$ then there is
+    a neighborhood such that $U \subseteq \bigcap_{A \in \mathcal{A}} A$ hence
+    $U \subseteq A$ for every $A \in \bigcap_{A \in \mathcal{A}} A$ hence
+    because of Proposition 2.8 (a) we have that $x \in \inter(A)$ but since
+    this is true for every $A$ then must be that 
+    $x \in \bigcap_{A \in \mathcal{A}} \inter(A)$. Therefore
+    $$\inter\bigg(\bigcap_{A \in \mathcal{A}} A\bigg)
+    \subseteq \bigcap_{A \in \mathcal{A}} \inter(A)$$
+
+    Let us assume now that $\mathcal{A}$ is a finite collection. Then we see
+    that $\bigcap_{A \in \mathcal{A}} \inter(A)$ is an open set and
+    $\bigcap_{A \in \mathcal{A}} \inter(A) \subseteq \bigcap_{A \in \mathcal{A}} A$
+    but also we know that $\inter(\bigcap_{A \in \mathcal{A}} A)$ is the
+    biggest open set contained in $\bigcap_{A \in \mathcal{A}} A$ therefore
+    it must be that 
+    $$\bigcap_{A \in \mathcal{A}} \inter(A)
+    \subseteq \inter\bigg(\bigcap_{A \in \mathcal{A}} A\bigg)$$
+    Hence the equality holds when $\mathcal{A}$ is a finite collection.
+\cleardoublepage
+    \item [(d)] We know that $\bigcup_{A \in \mathcal{A}} \inter(A)$ is open
+    since it's an arbitrary union of open sets and also we see that
+    $\bigcup_{A \in \mathcal{A}} \inter(A)
+    \subseteq  \bigcup_{A \in \mathcal{A}} A$ but also we know that
+    $\inter\bigg(\bigcup_{A \in \mathcal{A}} A\bigg)$ is the biggest open set
+    contained in $\bigcup_{A \in \mathcal{A}} A$ therefore it must happen that
+    $$\bigcup_{A \in \mathcal{A}} \inter(A)
+    \subseteq \inter\bigg(\bigcup_{A \in \mathcal{A}} A\bigg)$$
+
+    Let $\mathcal{A} = \{[0,1], [1, 2]\}$ where they are intervals of $\R$ then
+    $\bigcup_{A \in \mathcal{A}} \inter(A) = (0,1) \cup (1,2)$ and
+    $\inter(\bigcup_{A \in \mathcal{A}} A) = (0,2)$ so we see that
+    $\inter(\bigcup_{A \in \mathcal{A}} A)
+    \not\subseteq \bigcup_{A \in \mathcal{A}} \inter(A)$. Therefore when
+    $\mathcal{A}$ is a finite collection the equality is not preserved.
+    \end{itemize}
+\end{proof}
+\begin{proof}{\textbf{2-5}}
+\begin{itemize}
+    \item [(a)] Let $X = [0, \infty) \times \{0\} \subset \R^2$ and 
+    $Y = [-1, 1] \times \{0\} \subset \R^2$ such that
+    $f(x) = \sin(1/x)$ for $x > 0$ and if $x = 0$ we have that $f(0) = 0$.
+    
+    Let $U \subset X$ be an open set such that $U$ is of the form $(a,b)$
+    which is a basis and
+    since $U\subset (0, \infty)$ and $f$ is continuous in $(0, \infty)$ because
+    of the intermediate value theorem, we have that $f(U)$ is also open,
+    therefore $f$ is an open map. 
+
+    Let $E = \{1/n: n \in \N\} \cup \{0\}$ we know that $E \subset X$ and $E$
+    is a closed set then let us consider
+    $f(E) = \{\sin(n): n\in \N\} \cup \{0\}$ we see that $f(E)$ is a dense set
+    hence if we let $x \in [-1,1]$ such that $x \not\in f(E)$ then every
+    neighborhood of $x$ will have a point of $f(E)$ so $x$ is a limit point
+    of $f(E)$ which is not contained in $f(E)$, therefore $f(E)$ is not
+    closed and $f$ is not a closed map.
+
+    Let us consider now a sequence $(x_n) \subseteq X$ defined as
+    $x_n = 1/(\pi n + \pi/2)$ we see that
+    $x_n \to 0$ but $f(x_n) = -1$ if $n$ is odd and $f(x_n) = 1$ if $n$
+    is even hence $f$ does not converge and $f$ is therefore not continuous.
+
+    \item [(b)] Let $X = \R\times\{0\}$ and $Y = \R\times \{0\}$ such
+    that $f(x) = 0$ if $x \neq 0$ and $f(x) = 1$ if $x = 0$.
+
+    Let $E \subset X$ be a closed set then $f(E) = \{0\}$ or $f(E) = \{1\}$
+    or $f(E) = \{0, 1\}$ in any case they are closed sets since they are
+    singletons hence $f$ is a closed map.
+
+    Let $U \subset X$ be an open set then $f(U) \subseteq \{0,1\}$ and we know
+    that neither $\{0,1\}$ nor $\{0\}$ nor $\{1\}$ are open sets hence
+    $f$ is not an open map.
+
+    Finally $f$ is not continuous at $y=0$ since if we take $\epsilon = 1/2$ we have
+    that $|f(x) - f(0)| = |0 - 1| = 1 > 1/2$ no matter which $\delta > 0$
+    we take.
+
+    \item [(c)] Let $X = \R \times \{0\}$ and $Y = \R \times \{0\}$
+    such that $f(x) = 0$ if $x \leq 0$ and $f(x) = \arctan(x)$ if $x > 0$.
+    We see that $f$ is continuous.
+
+    Let $U = (-1,0) \subset \R$ we know $U$ is an open set of $X$ then
+    $f(U) =\{0\}$  but $\{0\}$ is not an open set in $Y = \R$. Therefore $f$
+    is not an open map.
+
+    Let $E = [0, \infty) \subset X$ we know that $E$ is closed in $X$, also we
+    see that $f(E) = [0,1)$ but $[0,1)$ is not an open nor a closed set in
+    $Y = \R$ therefore $f$ is not a closed map.
+
+    \item [(d)] Let $X = [0,\infty) \times \{0\}$ and $Y = \R \times \{0\}$
+    such that $f(x) = \arctan(x)$ we see that $f$ is continuous.
+
+    Let $U \subset X$ be an open set such that $U$ is of the form $(a,b)$
+    which is a basis and
+    since $U\subset (0, \infty)$ and $f$ is continuous in $(0, \infty)$ because
+    of the intermediate value theorem, we have that $f(U)$ is also open,
+    therefore $f$ is an open map. 
+
+    Let $E = [0, \infty) \subset X$ we know that $E$ is closed in $X$, also we
+    see that $f(E) = [0,1)$ but $[0,1)$ is not an open nor a closed set in
+    $Y = \R$ therefore $f$ is not a closed map.
+
+    \item [(e)] Let $X = \R\times\{0\}$ and $Y = \R\times \{0\}$ such
+    that $f(x) = 0$ we see that $f$ is continuous.
+
+    Let $E \subset X$ be a closed set then $f(E) = \{0\}$ which is a closed
+    set in $Y = \R$ since it is a singleton hence $f$ is a closed map.
+
+    Let $U \subset X$ be an open set then $f(U) = \{0\}$ and we know
+    that $\{0\}$ is not an open sets in $Y = \R$ hence $f$ is not an open map.
+
+\cleardoublepage
+    \item [(f)] Let $X = \R\times\{0\}$ and
+    $Y = (-\infty, 1] \cup (2, \infty)\times \{0\}$ such
+    that $f(x) = x$ if $x \leq 1$ and $f(x) = 2x$ if $x > 1$.
+
+    Let $U \subset X$ be an open set such that $U$ is of the form $(a,b)$ which
+    is a basis hence it's valid for any open set if
+    $(a,b) \subset (-\infty, 1]$ we know that $f$ is continuous
+    in this interval so because of the Intermediate Value Theorem $f(U)$
+    is an open map and in the same way if
+    $(a,b) \subset (1, \infty)$ then $f(U)$ is open because $f$ is continuous
+    in this interval and the Intermediate Value Theorem.
+    Now suppose $(a,b)$ such that $a < 1 < b$ then
+    $(a,b) = (a, 1] \cup (1, b)$ and we see that $f((a, 1]) = (a, 1]$ which is
+    open in $(-\infty, 1]$ since $(-\infty, 1] \setminus (a, 1] = (-\infty, a]$
+    which we know is a closed set hence $(a, 1]$ is an open set.
+    Also, we have that $f((1, b)) = (2, 2b)$ which is an open set so in this
+    case $f((a,b))$ is the union of two open sets i.e. it's an open set.
+    Therefore $f$ is an open map.
+
+    Let $E \subseteq X$ be a closed set and let us take a sequence
+    $(y_n) \subseteq f(E)$ such that $y_n \to y$ we want to prove that
+    $y \in f(E)$ which would imply that $f(E)$ is closed.
+    By definition there is $x_n \in E$ such that $f(x_n) = y_n$.
+    
+    But also we know that $x_n = y_n$ or
+    $x_n = y_n /2$ or a combination of both but only for a finite number of
+    points by the definition of $f$.
+
+    In the first case, this implies that $x_n \to x$ where $x = y$ and since
+    $E$ is a closed set then $x \in E$ but also we know that $f$ is continuous
+    in $(-\infty, 1]$ hence $y \in f(E)$.
+        
+    Lastly if $x_n = y_n /2$ we have that
+    $x_n \to x/2$ where $x/2 = y$ and since
+    $E$ is a closed set then $x \in E$ but also we know that $f$ is continuous
+    in $(1,\infty)$ hence $y \in f(E)$.
+
+    Therefore $f$ is a closed map.
+\end{itemize}
+\end{proof}
+\begin{proof}{\textbf{2-6}}
+\begin{itemize}
+    \item [(a)]
+    ($\Rightarrow$) Let $f$ be continuous and let $A \subseteq X$ also
+    $\overline{f(A)}$ is closed on $Y$ hence
+    $f^{-1}(\overline{f(A)})$ is closed on $X$ because $f$ is
+    continuous but also we know that
+    $A \subseteq f^{-1}(\overline{f(A)})$ and since $f^{-1}(\overline{f(A)})$
+    is closed it must happen that
+    $\overline{A} \subseteq f^{-1}(\overline{f(A)})$ this in turn implies that
+    $f(\overline{A}) \subseteq f(f^{-1}(\overline{f(A)})) \subseteq \overline{f(A)}$.
+    
+    ($\Leftarrow$) Let $B \subseteq Y$ be a closed set we want to show that
+    $A = f^{-1}(B)$ is also closed in $X$. Given that
+    $f(\overline{A}) \subseteq \overline{f(A)}$
+    we have that
+    \begin{align*}
+        f(\overline{A}) \subseteq \overline{f(A)} =
+        \overline{f(f^{-1}(B))} \subseteq \overline{B} = B
+    \end{align*}
+    since $B$ is closed. Then we have that $f(\overline{A}) \subseteq B$ hence
+    $$\overline{A} \subseteq  f^{-1}(f(\overline{A})) \subseteq f^{-1}(B) = A$$
+    Therefore $A$ is closed since it contains $\overline{A}$.
+
+    \item [(b)]
+    ($\Rightarrow$) Let $f$ be a closed map and let $A$ be any set of $X$
+    we know that $A \subseteq \overline{A}$ then $f(A)\subseteq f(\overline{A})$
+    but since $f$ is a closed map then $f(\overline{A})$ is closed which
+    implies that the closure of $f(A)$ must be contained in $f(\overline{A})$
+    i.e. $\overline{f(A)} \subseteq f(\overline{A})$.
+
+    ($\Leftarrow$) Let $A$ be a closed set of $X$ we want to prove that $f(A)$
+    is also closed. Since $A$ is closed we have that $A = \overline{A}$ hence
+    $f(A) = f(\overline{A})$ but we know that
+    $\overline{f(A)} \subseteq f(\overline{A}) = f(A)$
+    thus the closure of $f(A)$ is contained or equal to $f(A)$ therefore
+    $f(A)$ is closed implying that $f$ is a closed map.
+
+    \item [(c)]
+    ($\Rightarrow$) Let $f$ be continuous and let $B \subseteq Y$ we know that
+    by definition $\inter(B) \subseteq B$ so $f^{-1}(\inter(B)) \subseteq f^{-1}(B)$ 
+    we know that $f^{-1}(\inter(B))$ is open since $f$ is continuous and
+    $\inter(B)$ is an open set hence it must also happen that
+    $f^{-1}(\inter(B)) \subseteq \inter(f^{-1}(B))$ since by definition
+    $\inter(f^{-1}(B))$ is the largest open set contained in $f^{-1}(B)$.
+
+    ($\Leftarrow$) Let $B \subseteq Y$ be an open set we want to prove that
+    $f^{-1}(B)$ is an open set which implies that $f$ is continuous.
+    Since $B$ is open we have that $B = \inter(B)$
+    but also we know that $f^{-1}(B) = f^{-1}(\inter(B)) \subseteq \inter(f^{-1}(B))$
+    and by definition we know that $\inter(f^{-1}(B)) \subseteq f^{-1}(B)$
+    therefore $\inter(f^{-1}(B)) = f^{-1}(B)$ which implies that $f^{-1}(B)$
+    is an open set.
+
+    \item [(d)]
+    ($\Rightarrow$) Let $f$ be an open map and let $B \subseteq Y$
+    also let us name $C = \inter(f^{-1}(B)) \subseteq f^{-1}(B)$
+    then $f(C)\subseteq f(f^{-1}(B)) \subseteq B$ where
+    $f(C)$ is open since $f$ is an open map hence it must
+    also happen that $f(C) \subseteq \inter(B)$ since $\inter(B)$ is the biggest
+    open set contained in $B$ so we have that
+    $\inter(f^{-1}(B)) = C \subseteq f^{-1}(f(C)) \subseteq f^{-1}(\inter(B))$.
+
+    ($\Leftarrow$) Let $A \subseteq X$ be an open set we want to prove that
+    $f(A)$ is an open set too which implies that $f$ is open.
+    Since $f(A)$ is a set of $Y$ we know that
+    $\inter (f^{-1}(f(A))) \subseteq f^{-1}(\inter(f(A)))$ also we have that
+    $\inter A \subseteq \inter (f^{-1}(f(A)))$ then joining this two
+    equations and applying $f$ to both sides we have that
+    $$f(A) = f(\inter(A)) \subseteq f(f^{-1}(\inter(f(A)))) \subseteq \inter(f(A)) $$
+    where we used that $\inter(A) = A$ since $A$ is an open set.
+    Therefore we have that $f(A) \subseteq \inter(f(A))$ but also by definition
+    we know that $\inter(f(A)) \subseteq f(A)$ which implies that
+    $\inter(f(A)) = f(A)$ thus $f(A)$ is an open set and $f$ is an open map.
+\end{itemize}
+\end{proof}
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
