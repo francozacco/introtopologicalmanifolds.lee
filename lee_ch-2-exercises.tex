@@ -709,4 +709,146 @@
     Therefore since $y$ is arbitrary every sequence $(y_i)$ converges to every
     element in $Y$.
 \end{proof}
+\begin{proof}{\textbf{Exercise 2.35.}}
+    Let $p,q \in X$ then there is $f:X \to \R$ such that $f(p) = 0$ but then
+    $f(q) \neq 0$ and let us call $f(q) = r \in \R$.
+    We can take an open set $U = (-r/2 , r/2)$ if $r > 0$ or
+    $U = (r/2, -r/2)$ otherwise such that $0 \in U$
+    also, we can take a different set $V = (r/2, \infty)$ if $r > 0$ and
+    $V = (-\infty, r/2)$ otherwise such that $r \in V$.
+    We see that $U$ and $V$ are both open sets in $\R$ hence since $f$ is
+    continuous we have that $f^{-1}(U)$ and $f^{-1}(V)$ are open disjoint sets
+    where $p \in f^{-1}(U)$ and $q \in f^{-1}(V)$ therefore $X$ must be a
+    Hausdorff space.
+\end{proof}
+\begin{proof}{\textbf{Exercise 2.38.}}
+    Let us define $\Topo$ to be a topology on a finite set $X$ such that
+    $(X, \Topo)$ is a Hausdorff space, we want to show that
+    $\Topo = \mathcal{P}(X)$ i.e. $\Topo$ is the discrete topology.
+    Let $x,y \in X$ then there is a neighborhood $U_y \in \Topo$ of $x$
+    such that $y \not\in U_y$ so we can build $U = \bigcap_{y\neq x} U_y$
+    where $U$ is a finite intersection of open
+    neighborhoods hence it's an open set where $x \in U$ but $y \not\in U$
+    for every $y \in X$ therefore the singletons $\{x\}$ must be open sets
+    of $\Topo$. Also, we know that any union of arbitrarily many open
+    subsets of $X$ is an open subset of $X$ hence they are in the topology
+    $\Topo$ so this implies that it must happen that $\Topo = \mathcal{P}(X)$
+    therefore $\mathcal{P}(X)$ is the only topology on a finite set $X$ such
+    that $(X, \Topo)$ is a Hausdorff space.
+\end{proof}
+\begin{proof}{\textbf{Exercise 2.40.}}
+
+    ($\Rightarrow$) Let $U \subseteq X$ be an open subset since $\mathcal{B}$
+    is a basis for $X$'s topology then $U$ can be written as
+    $U = \bigcup_{\alpha} B_\alpha$ where each $B_\alpha \in \mathcal{B}$
+    hence for each $p \in U$ must happen that 
+    $p \in \bigcup_{\alpha} B_\alpha$ i.e. $p$ is at least in one
+    $B_\alpha \subseteq U$.
+
+    ($\Leftarrow$) If for each $p \in U$ there exist $B \in \mathcal{B}$
+    such that $p \in B \subseteq U$ it must happen that
+    $U = \bigcup_{\alpha} B_\alpha$ where $B_\alpha \in \mathcal{B}$
+    which implies that $U$ is the union of some collection of elements of
+    $\mathcal{B}$ therefore $U$ must be an open set.
+
+\end{proof}
+\cleardoublepage
+\begin{proof}{\textbf{Exercise 2.42.}}
+\begin{itemize}
+    \item [(a)] Let us consider a topology with basis $\mathcal{B}_\infty$
+    for $\R^n$ where each $B \in \mathcal{B}_\infty$ is defined as
+    $B_{s/2}(x) = \{y \in \R: d_\infty(x,y) < s/2\}$ where
+    $d_\infty(x,y) = \max_{1 \leq i \leq n}|x_i - y_i|$
+    we see that each $B_{s/2}(x)$ is an open cube in $\R^n$ of side length $s$.
+    On the other hand, we know because of Exercise 2.4(c) that
+    $d_{\infty}$ generate the same topology as the Euclidean metric
+    i.e. we can generate every open set of the Euclidean topology with
+    an arbitrary union of elements of $\mathcal{B}_\infty$. Hence,
+    since $\mathcal{B}_1$ is also the collection of open cubes of side length
+    $s$ in $\R^{n}$ it must also be a basis for $\R^{n}$.
+
+    \item [(b)] Let $B_{\epsilon}(t)$ be a ball around $t \in \R^n$.
+    Let us take now some $p \in B_{\epsilon}(t)$,
+    since $\Q$ is dense on $\R$ then for every 
+    coordinate $p_i$ we have that there is $x_i, r_i \in \Q$ such that
+    $$t_i - \epsilon < r_i < x_i < p_i < x_i + r_i < t_i + \epsilon$$
+    This implies that for every $p \in B_{\epsilon}(t)$ there is a ball
+    $B_{r}(x)$ such that $ p \in B_{r}(x) \subseteq B_{\epsilon}(t)$.
+    Therefore every open set in $\R^n$ can be built as an arbitrary union
+    of elements (balls) from $\mathcal{B}_2$ hence $\mathcal{B}_2$
+    is a basis for the Euclidean topology on $\R^n$.
+\end{itemize}
+\end{proof}
+\cleardoublepage
+\begin{proof}{\textbf{Exercise 2.45.}}
+Let $\mathcal{B}$ be a basis for some topology on $X$ we want to prove that
+the basis $\mathcal{B}$ satisfies the two properties $(i)$ and $(ii)$.
+\begin{itemize}
+    \item [(i)] By definition of basis we know that every open subset
+    of $X$ is the union of some collection of elements of $\mathcal{B}$.
+    Also, we know that $X$ is open so it must happen that
+    $\bigcup_{B \in \mathcal{B}} B = X$.
+
+    \item [(ii)] Let $B_1,B_2 \in \mathcal{B}$ and $x \in B_1 \cap B_2$ we want
+    to prove there is an element $B_3 \in \mathcal{B}$ such that
+    $x \in B_3 \subseteq B_1 \cap B_2$.
+    % Let us suppose the opposite i.e. there is no $B_3 \in  \mathcal{B}$
+    % such that $x \in B_3 \subseteq B_1 \cap B_2$ we want to arrive at a
+    % contradiction.
+    Let us take $U = B_1 \cap B_2$ we see that $U$ must be an open set since
+    $B_1$ and $B_2$ are also open, then since $\mathcal{B}$ is a basis
+    this implies that $U$ must be an arbitrary union of elements of
+    $\mathcal{B}$ hence there must be at least
+    one set $B \in \mathcal{B}$ such that $x \in B \subseteq U$.
+    Therefore we have that $x \in B \subseteq U \subseteq B_1 \cap B_2$
+    if we take $B_3 = B$ we are done.
+\end{itemize}
+\end{proof}
+\begin{proof}{\textbf{Exercise 2.51.}}
+\begin{itemize}
+    \item [(b)] Let $\mathcal{B}$ be a countable basis and let us take
+    an element $x_1 \in B_1 \in \mathcal{B}$ then we can build a set
+    $A = \{x_i : x_i \in B_i \in \mathcal{B} \text{ for } i \in \N\}$
+    we see that $A$ is countable. We want to prove that $A$ is dense in $X$.
+
+    Let us take an open set $U \subseteq X$ since we have a basis $\mathcal{B}$
+    we know that $U = \bigcup_\alpha B_\alpha$ then at least one element of $A$
+    is in $U$. Therefore $A$ is dense in $X$.
+\end{itemize}
+\end{proof}
+\cleardoublepage
+\begin{proof}{\textbf{Exercise 2.54.}}
+    Let $M$ be a $0$-manifold, let $p \in M$ and let $U \subseteq M$
+    be a neighborhood of $p$ such that it is homeomorphic to
+    an open ball in $\R^0$ but an open ball in $\R^0$ is the only point in
+    $\R^0$ and since homeomorphism means bijection it must happen that
+    $U = \{p\}$. Also, since $M$ is second countable we know there is a
+    countable basis $\mathcal{B}$ and hence there is $B \in \mathcal{B}$
+    such that $p \in B \subseteq \{p\}$ so must be that $B = \{p\}$
+    and we know that $M = \bigcup_{B \in \mathcal{B}} B$ therefore $M$ is 
+    a countable discrete space.
+
+    Let now $M$ be a countable discrete space we want to prove it's a
+    $0$-manifold.
+
+    Let $p, q \in M$ then there are two neighborhoods $\{p\}$ and $\{q\}$
+    such that $\{p\} \cap \{q\} = \emptyset$. Therefore $M$ is Hausdorff.
+
+    Let $\mathcal{B} = \{\{p\}: p \in M\}$ then any open subset of $M$ is the
+    union of some collection of elements of $\mathcal{B}$. Therefore $M$ is
+    second countable.
+
+    Let $p \in M$, let $0 \in \R^0$ be the only point in $\R^0$, and
+    let us define a map $T: \{p\} \to \{0\}$.
+    We see that $T$ is a bijection.
+    The only topology for $\R^0$ is $\Topo = \{\emptyset, \{0\}\}$ and we see
+    that $T^{-1}(\{0\}) = \{p\}$ which is open in $M$ so $T$ is continuous.
+    Since $T(\{p\}) = \{0\}$ we have that $T^{-1}$ is also continuous.
+    Therefore every point of $M$ has a neighborhood homeomorphic to an open
+    ball in $\R^0$ and to $\R^0$ itself. This implies that $M$ is locally
+    Euclidean of dimension $0$.
+
+    Finally, since $M$ is Hausdorff, second countable and locally Euclidean of
+    dimension $0$ we have that $M$ is a $0$-manifold.
+\end{proof}
 \end{document}

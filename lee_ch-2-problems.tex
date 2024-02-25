@@ -22,6 +22,7 @@
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
+\newcommand{\HH}{\mathbb{H}}
 \newcommand{\diam}{\text{diam}}
 \newcommand{\cl}{\text{cl}}
 \newcommand{\bdry}{\text{bdry}}
@@ -450,6 +451,392 @@
     we know that $\inter(f(A)) \subseteq f(A)$ which implies that
     $\inter(f(A)) = f(A)$ thus $f(A)$ is an open set and $f$ is an open map.
 \end{itemize}
+\end{proof}
+\cleardoublepage
+\begin{proof}{\textbf{2-7}}
+    Let $X$ be a Hausdorff space where $A \subseteq X$.
+    Let $p \in X$ be a limit point of $A$ and suppose $U$ is a neighborhood
+    of $p$ that contains finitely many points of $A$ we want to arrive at a
+    contradiction. Suppose $\{p_1, p_2,..., p_n\} \subset A$ is the set of
+    points that are in $U$ other than $p$.
+    Also, since $X$ is a Hausdorff space we know
+    that there is a set $U'$ that contains $p$ but does not contain any point
+    from the set $\{p_1, p_2,..., p_n\}$ hence $U' = \{p\}$
+    but this is a contradiction since $p$ is a limit point so it must contain
+    at least one point of $A$.
+    Therefore if $p$ is a limit point of $A$ then every neighborhood of $p$
+    must contain infinitely many points of $A$.
+\end{proof}
+\begin{proof}{\textbf{2-9}}
+\begin{itemize}
+    \item [(a)] Let a map $f:D \to A$ where $D$ is a discrete space and $A$
+    is any arbitrary topological space, we want to prove
+    that $f$ is continuous.
+    Let us take an open set $U \subseteq A$ then $f^{-1}(U)$ must be a 
+    set of $D$ but since $D$ is a discrete space (with the discrete topology)
+    it must happen that $f^{-1}(U)$ is an open set of $D$. Therefore every map
+    from $D$ to $A$ is continuous.
+
+    \item [(b)] Let a map $f: A \to T$ where $T$ is a space with the trivial
+    topology and $A$ is any arbitrary topological space, we want to prove
+    that $f$ is continuous.\\
+    Let us take an open set $U \subseteq T$ then it must happen that $U = T$
+    or $U = \emptyset$ since $T$ is a space with the trivial topology
+    then $f^{-1}(U) = f^{-1}(T) = A$ or
+    $f^{-1}(U) = f^{-1}(\emptyset) = \emptyset$ where both $A$ and $\emptyset$
+    are open sets by definition. Therefore every map from $A$ to $T$ is
+    continuous.
+
+    \item [(c)] Let us suppose that a map $f: T \to H$ where $T$ is a space
+    with the trivial topology and $H$ is a Hausdorff space
+    is continuous and it's not a constant map, we want to arrive
+    at a contradiction.\\
+    Let $x,y \in T$ such that $f(x) \neq f(y)$ since $H$ is a Hausdorff space
+    it must happen that there is $f(x) \in U_x \subseteq H$ and
+    $f(y) \in U_y \subseteq H$ such that $U_x \cap U_y = \emptyset$.
+    On the other hand, we know that $f$ is continuous then $f^{-1}(U_x)$
+    must be an open set where either $f^{-1}(U_x) = T$ or
+    $f^{-1}(U_x) = \emptyset$ and since $x \in f^{-1}(U_x)$ it must happen
+    that $f^{-1}(U_x) = T$ because of the same reason we have that
+    $y \in f^{-1}(U_y) = T$ hence $x \in f^{-1}(U_y)$ but then $f(x) \in U_y$,
+    a contradiction.
+    Therefore the only continuous maps from $T$ to $H$ are the constant maps.
+\end{itemize}
+\end{proof}
+\cleardoublepage
+\begin{proof}{\textbf{2-10}}
+    Let $f,g: X \to Y$ be two continuous maps and $Y$ a Hausdorff space.
+    We want to prove that $U = \{x \in X: f(x) = g(x)\}$ is closed on $X$.
+    Let us see that $X \setmin U = \{x \in X: f(x) \neq g(x)\}$ and let us
+    take $x \in X \setmin U$ then since $f(x) \neq g(x)$ and $Y$ is a Hausdorff
+    space there must be $V_{f(x)}, V_{g(x)} \subseteq Y$ such that
+    $V_{f(x)} \cap V_{g(x)} = \emptyset$.\\
+    We want to prove now that
+    $f^{-1}(V_{f(x)}) \cap g^{-1}(V_{g(x)}) \subset X \setmin U$
+    suppose there is $y \in f^{-1}(V_{f(x)}) \cap g^{-1}(V_{g(x)})$ such that
+    $y \not\in X \setmin U$ we want to arrive at a contradiction.
+    Since $y \in f^{-1}(V_{f(x)})$ we have that
+    $f(y) \in V_{f(x)}$ but also by the same reasoning we have that
+    $g(y) \in V_{g(x)}$ and since $y \not\in X \setmin U$ it must happen that
+    $f(y) = g(y)$ thus $V_{f(x)} \cap V_{g(x)} \neq \emptyset$ which is a
+    contradiction. Therefore it must be that
+    $f^{-1}(V_{f(x)}) \cap g^{-1}(V_{g(x)}) \subset X \setmin U$.\\
+    Finally, since this must be true for every $x \in X \setmin U$ then
+    $$X \setmin U
+    = \bigcup_{x \in X \setmin U} f^{-1}(V_{f(x)}) \cap g^{-1}(V_{g(x)})$$
+    hence $X \setmin U$ is open since it's an arbitrary union of open sets,
+    which implies that $U = \{x \in X: f(x) = g(x)\}$ is a closed set.
+
+    Let now $f,g:X \to Y$ be two continuous maps where $X = Y = \R$ with the
+    trivial topology such that $f(x)=x$ and $g(x) = 0$ for all $x \in X$.
+    We see that $U = \{x \in X: f(x) = g(x)\} = \{0\}$ but $U$ is not closed
+    since the only closed sets are $X = \R$ and $\emptyset$.
+\end{proof}
+\cleardoublepage
+\begin{proof}{\textbf{2-14}}
+\begin{itemize}
+    \item [(a)] ($\Rightarrow$) Let $x \in \overline{A}$ since $X$ is a first
+    countable space then there is $\mathcal{B}_x$ a nested neighborhood
+    basis for $X$ at $x$ and hence there is a sequence $(U_i)_{i=1}^{\infty}$
+    of neighborhoods of $x$ such that $U_{i+1} \subseteq U_i$.
+    On the other hand, since $x \in \overline{A}$ we know that every
+    neighborhood of $x$ contains a point of $A$ then we can build a sequence
+    $(x_i) \subseteq A$ such that $x_i \in U_i$ and $x_i \to x$ as we wanted.
+    
+    ($\Leftarrow$) Let $(x_n) \subset A$ be a sequence such that $x_n \to x$
+    where $x \in X$ we want to show that $x \in \overline{A}$. By
+    definition of convergence, for every neighborhood $U$ of $x$ there is
+    $N \in \N$ such that $x_n \in U$ for all $n \geq N$ but we know that
+    $x_n \in A$ therefore $x \in \overline{A}$.
+
+    \item [(b)] ($\Rightarrow$) Let $x \in \inter A$ and let
+    $(x_n) \subseteq X$ be a sequence that converges to $x$ then for every
+    neighborhood $U$ of $x$ there is $N \in \N$ such that $x_n \in U$ for all
+    $n \geq N$ if we take $U = \inter A$ then $(x_n)$ is be eventually in $A$.
+
+    ($\Leftarrow$) Let $(x_n) \subseteq X$ be a sequence that converges to
+    $x \in X$ and is eventually in $A$ we want to prove that $x \in \inter A$.
+    Let us note that $\inter A = X \setmin \overline{X \setmin A}$ so if $x$
+    is not in $\inter A$ it must be in $\overline{X \setmin A}$, let us suppose
+    this is the case, we want to arrive at a contradiction.
+    By what we proved in part (a) if $x \in \overline{X \setmin A}$ then it is
+    a limit of a sequence of points in $X \setmin A$ hence we have a sequence
+    that converges to $x$ but it's not eventually in $A$, a contradiction.
+    Therefore it must be that $x \in \inter A$.
+
+    \item [(c)] ($\Rightarrow$) Let $A$ be closed in $X$ and let
+    $(x_n) \subseteq A$ be a convergent sequence that converges to $x \in X$.
+    We know that $A = \overline{A}$ and because of part (a) since $x$ is 
+    the limit of a sequence of points in $A$ must happen that
+    $x \in \overline{A} = A$. Therefore $A$ contains every limit of every
+    convergent sequence of points in $A$.
+
+    ($\Leftarrow$) Let $x \in \overline{A}$ then because of part (a) $x$ is the
+    limit of a sequence $(x_n) \subseteq A$ but we know $A$ contains every
+    limit of every convergent sequence of points in $A$ since $(x_n)$ is
+    convergent then must happen that $x \in A$ and this happens for every
+    point in $\overline{A}$ therefore we have that $ \overline{A} \subseteq A$
+    which implies by definition that $A = \overline{A}$ hence $A$ is closed in
+    $X$.
+
+    \item [(d)] ($\Rightarrow$) Let $A$ be open in $X$ and let
+    $(x_n) \subseteq X$ such that $x_n \to x$ where $x \in A$. We know that
+    $A = \inter A$ and because of part (b) since $x \in A = \inter A$ then
+    every sequence converging to it is eventually in $A$.
+    
+    ($\Leftarrow$) Let $x \in A$ and $(x_n)\subseteq X$ such that $x_n \to x$
+    we know that $(x_n)$ is eventually in $A$ then by part (b) we know that 
+    $x \in \inter A$ so we have that $A \subseteq \inter A$ which implies
+    by definition of interior that $A = \inter A$ hence $A$ is open in $X$. 
+\end{itemize}
+\end{proof}
+\begin{proof}{\textbf{2-15}}
+\begin{itemize}
+    \item [(a)] Let $f:X \to Y$ be a continuous map and $p_n \to p$ in $X$.
+    We want to show that $f(p_n) \to f(p)$.
+
+    Let us take a neighborhood $U$ of $f(p)$ in $Y$ then since $f$ is continuous
+    we have that $f^{-1}(U) \subseteq X$ is open where $p \in f^{-1}(U)$
+    but also we know that $p_n \to p$ so by definition there is $N \in \N$
+    such that for all $i \geq N$ we have that $p_i \in f^{-1}(U)$.
+    Also, in general, we know that $f(f^{-1}(U)) \subseteq U$ hence
+    $f(p_i) \in U$ this implies that for any neighborhood $U \subseteq Y$
+    of $f(p)$ we can find an $N \in \N$ such that for all $i \geq N$ we have
+    that $f(p_i) \in U$, therefore $f(p_i) \to f(p)$.
+
+    \item [(b)] Let $X$ be first countable and $f: X \to Y$ be a map such that
+    $p_n \to p$ in $X$ implies that $f(p_n) \to f(p)$ in $Y$,
+    we want to prove that $f$ is continuous.
+
+    Let us suppose $f$ is not continuous we want to arrive at a contradiction.
+    If $f$ is not continuous then there is a neighborhood $U \subseteq Y$ of
+    $f(p)$ such that  $f^{-1}(U)$ is not open.
+
+    We know that $f(p_n) \to f(p)$ so there is $N \in \N$ such that for all
+    $i \geq N$ we have that $f(p_i) \in U$ this implies that
+    $p \in f^{-1}(U)$ and $p_i \in f^{-1}(U)$ and since $p_n \to p$
+    we see that $(p_n)$ is eventually in $f^{-1}(U)$ but also we know that
+    $X$ is first countable hence $f^{-1}(U)$ is open, a contradiction.
+    Therefore $f$ must be continuous.
+\end{itemize}
+\end{proof}
+\cleardoublepage
+\begin{proof}{\textbf{2-18}}
+\begin{itemize}
+    \item [(a)] Let us take some $p \in \R$ and let us define the topology of
+    $\R$ as
+    $$\mathcal{T} = \{U \subseteq \R: U= \emptyset \text{ or } p \in U\}$$
+    First, we want to prove that $\R$ with this topology is first countable.
+    Let us define a collection $\mathcal{B}$ with only one set $\{p\}$ which
+    is open by definition of the topology. We see that every neighborhood $U$
+    of $p$ contains $p$.
+    This implies that $(\R, \mathcal{T})$ is first countable.
+
+    Now we want to prove $(\R, \mathcal{T})$ is separable. Let us take the
+    set $\{p\}$. By definition every open set $U$ contains $p$ so $\{p\}$ is
+    dense and countable in $\R$ hence $(\R, \mathcal{T})$ is separable.
+
+    Let us suppose now that $(\R, \mathcal{T})$ is second countable we want to
+    arrive at a contradiction. Then $(\R, \mathcal{T})$ admits a countable
+    basis $\{U_n\}$. Also, we know that for each $x \in \R$ the set $\{p,x\}$
+    is open then there must be some $n$ for which $x \in U_n \subseteq \{p,x\}$
+    but since this must be true for each $x \in \R$ and $\R$ is not countable
+    then $\{U_n\}$ is uncountable, a contradiction.
+    Therefore $(\R, \mathcal{T})$ is not second countable.
+
+    Finally, let us suppose that $(\R, \mathcal{T})$ is Lindelöf we want to
+    arrive at a contradiction. Then let us take 
+    $\mathcal{U} = \{\{p,x\}: x \in \R\}$ as an open cover of $\R$ since each
+    set $\{p,x\}$ is open by definition. We know it must have a countable
+    subcover $\{U_n\}$. Let $x \in \R$ then there is $U_n$ such that
+    $x \in U_n$ for some $n \in \N$ but by definition $U_n = \{p, x\}$
+    and this must be this way for every $x \in \R$ then $\{U_n\}$
+    is uncountable which is a contradiction.
+    Therefore $(\R, \mathcal{T})$ is not Lindelöf.
+    \cleardoublepage
+    \item [(b)] Let us take some $p \in \R$ and let us define the topology of
+    $\R$ as
+    $$\mathcal{T} = \{U \subseteq \R: U= \R \text{ or } p \not\in U\}$$
+    First, we want to prove that $\R$ with this topology is first countable.
+    Let $x \in \R$ such that $x \neq p$ also let us define a collection with
+    one element as $\mathcal{B} = \{\{x\}\}$ where $\{x\}$ is open by
+    definition of the topology.
+    We see that every neighborhood $U$ of $x$ contains $x$. 
+    Now let us consider the case where we take $x = p$ then the only
+    neighborhood for $p$ is $\R$ so if we take
+    $\mathcal{B} = \{\R\}$ we have a countable neighborhood basis for $p$ too. 
+    This implies that $(\R, \mathcal{T})$ is first countable.
+
+    Now we want to prove $(\R, \mathcal{T})$ is Lindelöf.
+    Let $\mathcal{U}$ be some open cover of $\R$ then $\mathcal{U}$ is 
+    a collection of $U \in \Topo$ but one of them must be $\R$ since otherwise
+    $p$ is not covered by definition. 
+    Then we can take a subcover $\mathcal{U}' = \{\R\}$ which is countable and
+    still covers $\R$. Therefore $(\R, \mathcal{T})$ is Lindelöf.
+    
+    Let us suppose now that $(\R, \mathcal{T})$ is second countable we want to
+    arrive at a contradiction. Then $(\R, \mathcal{T})$ admits a countable
+    basis $\{U_n\}$. Also, we know that for each $x \in \R$ such that
+    $x \neq p$ the set $\{x\}$ is open then there must be some $n$ for which
+    $x \in U_n \subseteq \{x\}$ but since this must be true for each
+    $x \in \R$ where $x \neq p$ and $\R \setmin \{p\}$ is not countable then
+    $\{U_n\}$ must be uncountable too, a contradiction.
+    Therefore $(\R, \mathcal{T})$ is not second countable.
+
+    Finally, let us suppose that $(\R, \mathcal{T})$ is separable we want to
+    arrive at a contradiction. Then there must be a set $U$ which is dense
+    and countable in $\R$. Let $x \in \R$ such that $x \neq p$. We know that
+    the set $\{x\}$ is open by definition then $U$ must contain a point of
+    $\{x\}$ hence $\{x\} \subseteq U$ but this
+    must happen for every $x \in \R \setmin \{p\}$ which is uncountable then
+    $U$ must be uncountable which is a contradiction.
+    Therefore $(\R, \mathcal{T})$ is not separable.
+
+    \cleardoublepage
+    \item [(c)] Let us define the topology of $\R$ as
+    $$\mathcal{T}=
+    \{U \subseteq \R: U= \emptyset \text{ or }
+    \R \setmin U \text{ is finite}\}$$
+    First, we want to prove that $\R$ with this topology is separable.
+    Let $D$ be an infinite countable set in $\R$ and let $U \in \Topo$ be an
+    open set such that $\R \setmin U$ is finite.
+    Let us suppose that no element of $D$ is in $U$ we want to arrive at a
+    contradiction. Then it must be in $D \subseteq  \R \setmin U$ but
+    $\R \setmin U$ is finite but $D$ is inifinite so we have a contradiction.
+    Therefore since this must be true for any $U \in \Topo$ then $D$ is dense.
+    
+    Now we want to prove $(\R, \mathcal{T})$ is Lindelöf.
+    Let $\mathcal{U}$ be some open cover of $\R$ then $\mathcal{U}$ is 
+    a collection of sets $U$ from $\Topo$. Let us take any $U_1 \in \mathcal{U}$
+    then $\R \setmin U_1$ is a finite set, let us suppose it has $n$ elements
+    so there are $n$ points of $\R$ that are not covered by $U_1$ so there are
+    at most $n$ sets of $\mathcal{U}$ necessary to cover $\R$ completely,
+    hence we can build in the worst-case
+    $\mathcal{U}' = \{U_1, U_2,...,U_{n+1}\} \subseteq \mathcal{U}$
+    which is a countable subcover of $\mathcal{U}$.
+    Therefore $(\R, \mathcal{T})$ is Lindelöf.
+
+    Let us suppose now that $(\R, \mathcal{T})$ is first countable, we want to
+    arrive at a contradiction. Then for each $x \in \R$ there is a countable
+    neighborhood basis $\{U_n\}$ hence for every neighborhood $U$ of $x$
+    there must be some $U_n$ such that $U_n \subseteq U$.
+    Let us we take $U' = \bigcap_{i=1}^{\infty} U_n$
+    we see that this set must contain $\R$ but countably many points.
+    So there is some $y \in U'$ where $y \neq x$ which we can use to build a
+    neighborhood of $x$ as $\R \setmin \{y\}$.
+    We see that $y \in U_n$ for all $n$ but $y \not\in \R \setmin \{y\}$
+    so there is no $U_n$ such that $U_n \subseteq \R \setmin \{y\}$ which
+    is a contradiction. Therefore $(\R, \mathcal{T})$ is not first countable.
+
+    Finally, by Theorem 2.50 $(\R, \mathcal{T})$ can't be second countable
+    since it's not first countable.
+\end{itemize}
+\end{proof}
+\cleardoublepage
+\begin{proof}{\textbf{2-20}}
+    We want to show that second countability, separability, and Lindelöf
+    properties are all equivalent for metric spaces.
+
+    Let $(X,d)$ be some metric space which is second countable then by Theorem
+    2.50 we know it's Lindelöf and separable.
+
+    Let now $(X,d)$ be a separable metric space then it contains
+    a countable dense subset $A$.
+    We want to prove the following collection is a basis for $(X,d)$
+    \begin{align*}
+        \mathcal{B} = \{B_{q}(x): x \in A \text{ and }q \in \Q\}
+    \end{align*}
+    Then $\mathcal{B}$ is the collection of balls centered at every $x \in A$
+    which is countable with radius $q \in \Q$ which is also countable.
+    Let $U \subseteq (X,d)$ be an open set then since $A$ is dense there is
+    a point $x \in A$ such that $x \in U$ and since the collection of balls
+    (of any radius) is a basis for the metric space then there must be some
+    $B_{r}(x) \subseteq (X,d)$ such that $B_{r}(x) \subseteq U$.
+    So we can take some $q \in \Q$ such that $0 < q < r$ and some
+    $y \in B_q(x)$ such that
+    $y \in B_{q}(x) \subseteq B_{r}(x) \subseteq U$
+    which implies that $\mathcal{B}$ is a countable basis for $(X,d)$
+    and thus $(X,d)$ is second countable.
+
+    Let now $(X,d)$ be a Lindelöf metric space then for every open cover of
+    $(X,d)$ there is a countable subcover.
+    Let us define an open cover as $C_q = \{B_q(x): x \in (X,d)\}$
+    where $q \in \Q$ then there is 
+    a countable subcover $C_q' \subseteq C_q$. We want to prove the collection
+    $\mathcal{B} = \bigcup_{q \in \Q} C_q'$ is a basis for $(X,d)$.
+    Let $U \subseteq (X,d)$ be an open set then given some $x \in U$ there
+    is $B_{r}(x) \subseteq U$ for some $r \in \R$, let us take some $q \in \Q$
+    such that $0 < q < r/2$ then there is some $y \in B_{r/2}(x)$ such that
+    $x \in B_q(y) \in \mathcal{B}$. Now let us suppose $z \in B_q(y)$
+    we see that $d(y,z) < q < r/2$ but also we know that $d(x,y) < r/2$
+    so by the triangle inequality, we have that
+    $d(x,z) \leq d(x,y) + d(y,z) < r/2 + r/2 = r$ hence $z \in B_r(x)$ and
+    therefore $x \in B_q(y) \subseteq B_r(x) \subseteq U$ which implies that
+    $\mathcal{B}$ is a countable basis for $(X,d)$ and thus $(X,d)$
+    is second countable. 
+\end{proof}
+\cleardoublepage
+\begin{proof}{\textbf{2-21}}
+    We want to show that every locally Euclidean space is first countable.
+
+    We know that $\R^n$ is first countable, and that
+    $$\mathcal{B} = \{B_q(x): x \in \R^n \text{ and }q \in \Q\}$$
+    is a countable basis for $\R^n$.
+    
+    Let $M$ be a locally Euclidean space.
+    Let us take $p \in M$ with a neighborhood $U \subseteq M$ then since
+    $M$ is locally Euclidean there must be some map $\varphi:U \to B_r$
+    which is a homeomorphism to an open ball $B_r \subseteq \R^n$.  
+    Then $B_r(\varphi(p))$ is a neighborhood of $\varphi(p)$ and since
+    $\mathcal{B}$ is a basis for $\R^n$ there is some $q \in \Q$ such that
+    $B_q(\varphi(p)) \subseteq B_r(\varphi(p))$ but since $\varphi$ is a
+    bijection there is $V_q = \varphi^{-1}(B_q(\varphi(p)))$ such that
+    $V_q \subseteq U$ where $V_q$ is a neighborhood of $p$.
+    
+    Since we can do this for any neighborhood $U$ of $p$ then the collection
+    $V_q$ is a countable basis for $p$ and therefore $M$ is first countable.
+\end{proof}
+\begin{proof}{\textbf{2-23}}
+    Let $M$ be a manifold. We know that for every $p \in M$ there is
+    $\varphi: U_p \to O_p$ which is a homeomorphism from a neighborhood
+    $U_p$ of $p$ to an open set $O_p \in \R^n$ which exists since $M$ is
+    locally Euclidean.
+
+    So let us build a collection $\mathcal{B}_p = \{\varphi^{-1}(B_r(\varphi(p))) : r>0\}$
+    which is a collection of open sets of $U_p$ which are homeomorphic
+    to an open ball in $\R^n$.
+    Then we can build a collection $\mathcal{B} = \bigcup_{p \in M} \mathcal{B}_p$.
+    We want to prove $\mathcal{B}$ is a basis for $M$.
+
+    So let $V \subseteq M$ be an open set where $p \in V$ and let us consider
+    the set $U = V \cap U_p$ then we see that $U$ is open, $p \in U$ and
+    $\varphi(U)$ is open in $\R^n$ so there is some ball
+    $B_r(\varphi(p)) \subseteq \varphi(U)$ but $\varphi^{-1}(B_r(\varphi(p)))$
+    is in $\mathcal{B}$ then we have that
+    $$p \in \varphi^{-1}(B_r(\varphi(p))) \subset U \subset V$$
+    which implies that $\mathcal{B}$ is a basis for $M$.
+    Therefore every manifold $M$ has a basis of coordinate balls. 
+\end{proof}
+\begin{proof}{\textbf{2-25}}
+    Let $M$ be an n-dimensional manifold with boundary and let $p \in \inter M$
+    then there is a domain of an interior chart $U \subseteq M$ of $p$ such
+    that $\varphi(U)$ is an open set in $\R^n$ where $\varphi$
+    is a homeomorphism.
+    
+    We want to prove first that $U \subseteq \inter M$ by contradiction.
+    Let us suppose that there is at least one point $q \in U$ such that
+    $q \not\in \inter M$ then $q \in \partial M$ and so $\varphi(q)$ must be
+    in $\partial \HH^n$ so $U$ is not the domain of an interior chart which is
+    a contradiction and must be that $U \subseteq \inter M$.
+
+    Then $\inter M$ is second countable, a Hausdorff
+    space and locally Euclidean therefore $\inter M$ is an n-manifold without
+    boundary.
+
+    On the other hand, for each $p \in \inter M$ we have a domain of an interior 
+    chart (or neighborhood) $U_p \subseteq \inter M$ then
+    $\inter M = \bigcup_{p\in\inter M} U_p$ and since each $U_p$ is open then
+    $\inter M$ is open.
 \end{proof}
 \end{document}
 
