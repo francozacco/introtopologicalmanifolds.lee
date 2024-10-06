@@ -1,0 +1,1274 @@
+\documentclass[11pt]{article}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{adjustbox}
+\usepackage{mathrsfs}
+\usepackage{graphicx}
+\usepackage{siunitx}
+\usepackage{tikz-cd}
+\usepackage[mathscr]{euscript}
+
+
+\title{\textbf{Solutions to selected problems on Introduction to Topological Manifolds - John M. Lee.}}
+\author{Franco Zacco}
+\date{}
+
+\addtolength{\topmargin}{-3cm}
+\addtolength{\textheight}{3cm}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\diam}{\text{diam}}
+\newcommand{\cl}{\text{cl}}
+\newcommand{\bdry}{\text{bdry}}
+\newcommand{\inter}{\text{Int}}
+\newcommand{\ext}{\text{Ext}}
+\newcommand{\Pow}{\mathcal{P}}
+\newcommand{\Topo}{\mathcal{T}}
+\newcommand{\Or}{\text{ or }}
+\newcommand{\setmin}{\setminus}
+
+
+\theoremstyle{definition}
+\newtheorem*{solution*}{Solution}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\section*{Chapter 3 - New Spaces from Old}
+
+\subsection*{Exercises}
+
+\begin{proof}{\textbf{Exercise 3.1.}}
+    Let $S \subseteq X$ be any subset of the topological space $X$.
+    We want to show $\Topo_S$ is a topology on $S$.
+    \begin{itemize}
+    \item [(i)] Given that $X$ is an open set then $S \cap X = S$ is in
+    $\Topo_S$ also we know that $\emptyset$ is in the topology of $X$ so
+    $\emptyset$ is open in $X$ hence $S \cap \emptyset = \emptyset$ is in
+    $\Topo_S$.
+    
+    \item [(ii)] Let $U_1, U_2 \in \Topo_S$ then we know there are open sets
+    $V_1, V_2 \subseteq X$ such that $U_1 = S \cap V_1$ and $U_2 = S \cap V_2$
+    so we have that
+    \begin{align*}
+        U_1 \cap U_2 &= (S \cap V_1) \cap (S \cap V_2)\\
+            &= S \cap (V_1 \cap V_2)
+    \end{align*}
+    but since $V_1 \cap V_2$ is open in $X$ we have that $U_1 \cap U_2$ is
+    in $\Topo_S$. We can repeat this process for finitely many $U_i \subseteq S$
+    since each $U_i$ is related to some open set $V_i \subseteq X$ and we know
+    that the finite intersection of open sets in $X$ is open. Therefore
+    $U_1 \cap ... \cap U_n$ is in $\Topo_S$.
+
+    \item [(iii)] Let $U, U' \in \Topo_S$ then there are open sets 
+    $V, V' \subseteq X$ such that $U = S \cap V$ and $U' = S \cap V'$
+    so we can write that
+    \begin{align*}
+        U \cup U' &= (S \cap V) \cup (S \cap V')\\
+            &= ((S \cap V) \cup S) \cap ((S \cap V) \cup V')\\
+            &= S \cap ((V' \cup S) \cap (V' \cup V))\\
+            &= (S \cap (V' \cup S)) \cap (V' \cup V)\\
+            &= S \cap (V' \cup V)
+    \end{align*}
+    And we know that $V'\cup V$ is open in $X$ so $U \cup U'$ is in $\Topo_S$.
+    We can continue this process for an arbitrary union $\bigcup_\alpha U_\alpha$
+    since we can write in the same way we did that
+    $$\bigcup_\alpha U_\alpha = S \cap \bigcup_\alpha V_\alpha$$
+    But $\bigcup_\alpha V_\alpha$ is open in $X$ since $X$ is a topological
+    space. Therefore $\bigcup_\alpha U_\alpha$ in in $\Topo_S$.
+    \end{itemize}
+    All we proved implies that $\Topo_S$ is a topology on $S$.
+\end{proof}
+\begin{proof}{\textbf{Exercise 3.2.}}
+    Let $S$ be a subspace of $X$.
+    \begin{itemize}
+        \item [($\Rightarrow$)] Let $B \subseteq S$ be closed set in $S$ then
+        $S \setmin B$ is an open set in $S$ so $S \setmin B \in \Topo_S$
+        which implies that there is an open set $V \in X$ such that 
+        $S \setmin B = S \cap V$ then $X \setmin V$ is a closed set in $X$ and
+        $B = X \setmin V \cap S$. Therefore there is a closed set
+        $X \setmin V \subseteq X$ such that $B$ is equal to the intersection
+        of $S$ with $X \setmin V$.
+
+        \item [($\Leftarrow$)] Let now $B = C \cap S$ where $C \subseteq X$
+        is a closed subset of $X$. We want to prove that $B$ is closed in $S$.
+        
+        We know that $X \setmin C$ is open in $X$. Let us define $U = S \setmin B$
+        then we see that $U = S \setmin B \subseteq X \setmin C$ so there is
+        an open subset $X \setmin C \subseteq X$ such that
+        $U = S \cap X \setmin C$ hence $U$ is open in $S$.
+        Therefore must be that $B$ must be closed in $S$.
+    \end{itemize}
+\end{proof}
+\begin{proof}{\textbf{Exercise 3.3.}}
+    Let $x \in S$ and $r > 0$ we want to prove first that
+    $B_r^S(x) = B_r^M(x) \cap S$.
+
+    Let $y \in B_r^S(x)$ meaning that $y \in S$ and $d(x,y) < r$.
+    By definition $B_r^M(x) = \{a \in M: d(x,a) < r\}$ since $S \subseteq M$
+    and we know that $d(x,y) < r$ then $y \in B_r^M(x)$ this implies that
+    $B_r^S(x) \subseteq B_r^M(x) \cap S$.
+
+    Let now $y \in B_r^M(x)$ and $y \in S$ then by definition
+    $B_r^S(x) = \{a \in S: d(x,a) < r\}$ then $y \in B_r^S(x)$ which implies
+    that $B_r^M \cap S \subseteq B_r^S(x)$. Therefore we get that
+    $B_r^S(x) = B_r^M(x) \cap S$.
+
+    Let now $U \in \Topo_S$ so $U = V \cap S$ for some open set $V \subseteq M$.
+    We want to show that $U$ is also in the metric topology for $S$ let us
+    call it $\Topo_d$.
+
+    Let $x \in U$ then $x \in V$ too and since $M$ is a metric space there is
+    a ball $B_r^M(x) \subseteq V$. Let now $y \in B_r^S(x)$
+    then must be that $y \in U$ because otherwise $y \not\in V$ which
+    cannot happen hence $B_r^S(x) \subseteq U$.
+    Since this must happen for any $x \in U$ we have that
+    $U \in \Topo_d$ since $U$ can be built as a union of open
+    balls. Therefore $\Topo_S \subseteq \Topo_d$.
+
+    Let now $U \in \Topo_d$ i.e. $U$ can be written as the union of open balls
+    so if $x \in U$ we have a ball $B_r^S(x) \subseteq U$.
+    Also, let $V = \bigcup_{x \in U} B_{r_x}^M(x)$ be an open set in $M$.
+    So if $y \in B_r^S(x)$ then $y \in B_r^M(x)$ because of what we proved earlier
+    and $B_r^M(x) \subseteq V$.
+    This implies that if $y \in U$ then $y \in V$ hence $U = V \cap S$.
+    Therefore $\Topo_d \subseteq \Topo_S$.
+    Finally, we get that $\Topo_d = \Topo_S$ as we wanted.
+\end{proof}
+\cleardoublepage
+\begin{proof}{\textbf{Exercise 3.6.}}
+\begin{itemize}
+    \item [(a)] Let $U \subseteq S \subseteq X$ where $U$ is open in $S$ and
+    $S$ is open in $X$ we want to show that $U$ is also open in $X$.
+    Since $U$ is open in $S$ then there is an open set $V \subseteq X$ such that
+    $U = V \cap S$ but since $V$ and $S$ are open in $X$ and a finite
+    intersection of open sets is open in $X$ then $U$ is open in $X$.
+
+    Now let again $U \subseteq S \subseteq X$ where $U$ is closed in $S$
+    and $S$ is closed in $X$ we want to prove that $U$ is also closed in $X$.
+    Because of Exercise 3.2. we know that if $U$ is closed in $S$
+    then there exists a closed set $B \subseteq X$ such that $U = B \cap S$
+    but since $B$ and $S$ are closed in $X$ and an intersection of arbitrary
+    many closed subsets is closed in $X$ then $U$ is closed in $X$.
+
+    \item [(b)] Let $U$ be a subset of $S$ that is open in $X$
+    we want to prove it is also open in $S$.
+    We can write $U$ as $U = U \subset S$ and since $U$ is open in $X$ then
+    $U$ is open in $S$ by definition of the subspace topology.
+
+    Now let $U$ be a subset of $S$ that is closed in $X$ we want to prove it
+    is also closed in $S$. As before we can write $U$ as $U = U \cap S$ since
+    $U$ is closed in $X$ then by Exercise 3.2.we know that $U$ is closed in $S$.
+
+\end{itemize}
+\end{proof}
+\begin{proof}{\textbf{Exercise 3.7.}}
+    \begin{itemize}
+        \item [(a)] Let $U$ be a set of $S$ then the closure of $U$ in $S$ that
+        we name $\overline{U}_S$ is by definition the smallest closed set on $S$ that
+        contains $U$.
+        On the other hand, because of Exercise 3.2. we know that
+        $\overline{U} \cap S$ is a closed set on $S$ that contains $U$       
+        then at least must happen that
+        $\overline{U}_S \subseteq \overline{U} \cap S$.
+
+        Now let $x \in \overline{U} \cap S$ we want to show that also
+        $x \in \overline{U}_S$. Let us take an open neighborhood $V$
+        of $x$ in $S$ so $V$ is of the form $V = G \cap S$ where $G$ is an
+        open set in $X$. We can say that $G$ is a neighborhood of $x$ in $X$
+        and since $x \in \overline{U}$ then $G \cap U \neq \emptyset$ 
+        also, by definition $U \subseteq S$ so we see that
+        $(S \cap G) \cap U = V \cap U \neq \emptyset$ but this implies that
+        $x$ is in the closure of $U$ in $S$ i.e. $x \in \overline{U}_S$.
+        Finally, this implies that $\overline{U}_S = \overline{U} \cap S$.
+
+        \item [(b)] Let $U \subseteq S$ and let us name $\inter U_S$
+        the interior of $U$ in $S$ we want to prove that
+        $\inter U \cap S \subseteq \inter U_S$. Let $x \in \inter U \cap S$
+        so there is a neighborhood $V$ of $x$ that is contained in
+        $U \subseteq S$ hence, this implies too that $x \in \inter U_S$.
+        Therefore $\inter U \cap S \subseteq \inter U_S$.
+
+        Finally, suppose now that $X = \R$, $S = [0,1] \cup (2,3)$
+        and let us take $U = [0,1]$, we see that $U$ is open in $S$ since
+        $U = (-1, 2) \cap [0,1]$ hence $\inter U_S = [0,1]$ but 
+        $\inter U \cap S = (0,1)$ so we see they are not equal. 
+    \end{itemize}    
+\end{proof}
+\cleardoublepage
+\begin{proof}{\textbf{Exercise 3.11.}}
+    \begin{itemize}
+        \item [(c)]
+        ($\Rightarrow$) Let $(p_i)$ be a sequence of $S$ and $p \in S$ such
+        that $p_i \to p$ in $S$ we want to show that $p_i \to p$ in $X$.
+        Since $p_i \to p$ in $S$ then for every neighborhood $U \subseteq S$
+        of $p$ there is $N \in \N$ such that $p_i \in U$ for all $i \geq N$.
+        Also, we know that $U$ is of the form $U = V \cap S$
+        so there is a neighborhood $V \subseteq X$ of $p$ such that $p_i \in V$
+        for all $i \geq N$ hence $p_i \to p$ in $X$ as well.
+        
+        ($\Leftarrow$) Let $(p_i)$ be a sequence of $S$ and $p \in S$ such
+        that $p_i \to p$ in $X$ we want to show that $p_i \to p$ in $S$.
+        Since $p_i \to p$ in $X$ then for every neighborhood $V \subseteq X$
+        of $p$ there is $N \in \N$ such that $p_i \in V$ for all $i \geq N$.
+        Also, we see that $V \cap S \neq \emptyset$ since $p_i,p \in S$
+        so we can define $U = V \cap S$ which is a neighborhood of $p$ in $S$
+        for which $p_i \in U$ when $i \geq N$ hence $p_i \to p$ in $S$ as well.
+
+        \item [(d)] Let $X$ be a Hausdorff space and let $S$ be a subspace of
+        $X$ we want to prove that $S$ is also Hausdorff.
+
+        Let $p_1, p_2 \in S$ since $p_1$ and $p_2$ are also in $X$ then there
+        exist two neighborhoods $V_1 \subseteq X$ and $V_2 \subseteq X$
+        for $p_1$ and $p_2$ respectively such that $V_1 \cap V_2 = \emptyset$.
+        
+        On the other hand, we can define two neighborhoods $U_1 = V_1 \cap S$
+        and $U_2 = V_2 \cap S$ in $S$ for $p_1$ and $p_2$ respectively such
+        that $U_1 \cap U_2 = \emptyset$ since we said that
+        $V_1 \cap V_2 = \emptyset$.
+        Finally, this implies that $S$ is a Hausdorff subspace.
+
+        \item [(e)] Let $X$ be first countable and let $S$ be a subspace of
+        $X$ we want to prove that $S$ is also first countable.
+
+        Let $p \in S$ and let us define the following collection
+        $$\mathcal{B}_p^S = \{ B \cap S : B \in \mathcal{B}_p\}$$
+        where $\mathcal{B}_p$ is the countable neighborhood basis for $X$ at $p$.
+
+        Let now $U \subseteq S$ be a neighborhood of $p$ then $U$ is of the
+        form $U = V \cap S$ for an open set $V \subseteq X$. Since $X$ is 
+        first countable there is $B \in \mathcal{B}_p$ such that
+        $p \in B \subseteq V$ but then we have that
+        $p \in B \cap S \subseteq V \cap S = U$ hence this implies
+        that $\mathcal{B}_p^S$ is a neighborhood basis for $S$ at $p$ which 
+        is also countable by definition. Therefore $S$ is also first countable.
+\cleardoublepage
+        \item [(f)] Let $X$ be second countable and let $S$ be a subspace of
+        $X$ we want to prove that $S$ is also second countable.
+
+        Let us define the following collection
+        $$\mathcal{B}_S = \{ B \cap S : B \in \mathcal{B}\}$$
+        where $\mathcal{B}$ is a countable basis of $X$.
+        We want to show that $\mathcal{B}_S$ is a countable basis for $S$.
+
+        Let $U \subseteq S$ be an open set then $U$ is of the form
+        $U = V \cap S$ for an open set $V \subseteq X$ and since $X$
+        is second countable we can write $V = \bigcup_\alpha B_\alpha$ where
+        $B_\alpha \in \mathcal{B}$ then we have that
+        $U = (\bigcup_\alpha B_\alpha) \cap S$ hence
+        $U = \bigcup_\alpha (B_\alpha \cap S)$ so $U$ can be written as
+        the union of some collection of elements of $\mathcal{B}_S$
+        and we know by definition that $\mathcal{B}_S$ is countable
+        so $\mathcal{B}_S$ is a countable basis for $S$
+        and therefore $S$ is second countable.
+    \end{itemize}
+\end{proof}
+\begin{proof}{\textbf{Exercise 3.13.}}
+    Let $S \subseteq X$ be a subspace of a topological space $X$ we want to
+    show $\iota_S: S \to X$ is a topological embedding.
+
+    The inclusion map is injective since $\iota_S(x) = \iota_S(y)$ implies that
+    $x = y$ where $x,y \in S$.
+
+    Also, let $U \subseteq X$ be an open subset of $X$ then we have that
+    $$\iota_S^{-1}(U) = \{x \in S: \iota_S(x) \in U\} = \{x \in S: x \in U\} = U \cap S$$
+    Since $S$ is a subspace of $X$ then $U \cap S$ is open in $S$ and therefore
+    $\iota_S$ is continuous
+
+    Now we want to prove $\iota_S^{-1}|_{\iota(S)}:\iota_S(S) \to S$ is continuous,
+    let $U\subseteq S$ be an open set.
+    % then there exists $V \subseteq X$ such that $U = V \cap S$.
+    We want to show that $\iota_S(U)$ is open in $\iota_S(S)$.
+    By definition, $\iota_S(S) = S$ and $\iota_S(U) = U$ then since $U$
+    is open in $S$ we have that $\iota_S(U)$ is open in $\iota_S(S)$.
+    Therefore $\iota_S^{-1}|_{\iota(S)}$ is continuous.
+
+    Finally, we want to prove $\iota_S: S \to \iota(S)$ is surjective.
+    Let $y \in \iota_S(S)$ then there is $\iota_S^{-1}|_{\iota(S)}(y) = y$
+    such that $\iota_S(y) = y$ hence $\iota_S$ as defined is surjective.
+
+    Adding all we have proven we see that $\iota_S: S \to X$ is a topological
+    embedding.
+\end{proof}
+\begin{proof}{\textbf{Exercise 3.17.}}
+    Let $[0,1) \subset \R$ and let $\iota:[0,1) \to \R$ be the inclusion map
+    then $\iota$ is a topological embedding because of Excercise 3.13.
+    Since $\iota$ is defined from $[0,1)$ to $\R$ then $[0,1)$ is open and
+    closed in $[0,1)$ but $\iota([0,1)) = [0,1)$ is not open nor closed in $\R$
+    and therefore $\iota$ is not open nor closed.
+\end{proof}
+\begin{proof}{\textbf{Exercise 3.19.}}
+    Let $f: A \to X$ be a surjective topological embedding then $f$ is a
+    homeomorphism onto its image i.e. $f': A  \to f(A)$ is a homeomorphism 
+    but we know that also $f$ is bijective (injective by the topological
+    embedding definition and surjective by definition) so $f(A) = X$.
+    Therefore $f$ is a homeomorphism.
+\end{proof}
+\cleardoublepage
+\begin{proof}{\textbf{Exercise 3.25.}}
+    Let $$\mathcal{B} = \{U_1 \times ... \times U_n : U_i
+    \text{ is an open subset of }X_i, i =1, ..., n\}$$
+    We want to prove that $\mathcal{B}$ is a basis for a topology then
+    \begin{itemize}
+        \item [(i)] First, we want to show that
+        $\bigcup_{B \in\mathcal{B}} B = X$
+        where $X = X_1 \times ... \times X_n$.
+        But we know that $X \in \mathcal{B}$ since each $X_i$ is open in $X_i$
+        therefore it must be that 
+        \begin{align*}
+            \bigcup_{B \in \mathcal{B}} B = X
+        \end{align*}
+        \item [(ii)] Let $B_1, B_2 \in \mathcal{B}$ where
+        $B_1 = U_1 \times ... \times U_n$ and $B_2 = V_1 \times ... \times V_n$
+        then we have that
+        \begin{align*}
+            (U_1 \times ... \times U_n) \cap (V_1 \times ... \times V_n)
+            &= (U_1 \cap V_1) \times ... \times (U_n \cap V_n)
+        \end{align*}
+        But since $U_i, V_i$ are open in $X_i$ then $U_i \cap V_i$ is also
+        open in $X_i$. This implies that $B_1 \cap B_2 \in \mathcal{B}$.
+    \end{itemize} 
+    Therefore $\mathcal{B}$ is a basis for a topology.
+\end{proof}
+\cleardoublepage
+\begin{proof}{\textbf{Exercise 3.26.}}
+    Let $\Topo_\rho$ be the max-metric topology on $\R^n$ and
+    $\Topo_p$ be the product topology on $\R^n$ generated by the following
+    basis
+    $$\mathcal{B} =
+    \{U_1 \times ... \times U_n: U_i \text{ is an open subset of }
+    \R, i = 1,..., n\}$$
+    Also, let $U$ be an open set from the basis $\mathcal{B}$ such that 
+    $$U = (a_1, b_1) \times ... \times (a_n, b_n)$$
+    Where $a_i, b_i \in \R$. Let $x = (x_1, ..., x_n) \in U$ then
+    for each coordinate $i$ there is $\epsilon_i$ such that
+    $(x_i - \epsilon_i, x_i + \epsilon_i) \subseteq (a_i, b_i)$. Let us take
+    $\epsilon = \min\{\epsilon_1, ..., \epsilon_n\}$. Then let us consider
+    a ball $B_{\epsilon}^{\rho}(x) \in \R^n$ where the metric $\rho$ is defined
+    as  $\rho(x,y) = \max |x_i - y_i|$ so we have that 
+    $$B_{\epsilon}^{\rho}(x) \subseteq (a_1, b_1) \times ... \times (a_n, b_n) = U$$
+    This implies that $\Topo_p \subseteq \Topo_\rho$.
+
+    Conversely, let $B_{\epsilon}^\rho(x) \in \R^n$ and let
+    $y \in B_{\epsilon}^\rho(x)$ we want to find an open set $V \in \mathcal{B}$
+    where $y \in V$ such that $V \subseteq B_{\epsilon}^\rho(x)$.
+    But the metric $\rho$ implies that
+    \begin{align*}
+        B_{\epsilon}^\rho(x) = (x_1 - \epsilon, x_1 + \epsilon)
+        \times ... \times (x_n - \epsilon, x_n + \epsilon)
+    \end{align*}
+    We see that if we take $V = B_{\epsilon}^\rho(x)$ then $V \in \mathcal{B}$.
+    This implies that $\Topo_\rho \subseteq \Topo_p$ and therefore
+    $\Topo_\rho = \Topo_p$.
+
+    Finally, since the max metric and the Euclidean metric are equivalent, i.e.
+    they generate the same open sets we can say that also $\Topo_{d_2} = \Topo_p$
+    where $d_2$ is the Euclidean metric.
+\end{proof}
+\begin{proof}{\textbf{Exercise 3.29.}}
+    Let us consider the following diagram
+    \[\begin{tikzcd}
+        & X_1 \times ... \times X_n \arrow[d,"\pi_i"] \\
+        X_1 \times ... \times X_n \arrow[ur,"i"]\arrow[r,"\pi_i"] & X_i
+    \end{tikzcd}\]
+    This is analogous to the Characteristic Property diagram where we set
+    $Y = X_1 \times ... \times X_n$ and we have
+    replaced $f$ to $i$ and $f_i$ to $\pi_i$. We define 
+    $i:X_1 \times ... \times X_n \to X_1 \times ... \times X_n$
+    as the identity function.
+    Since $i$ is continuous then by the Characteristic Property
+    we have that $\pi_i = \pi_i~\circ~i$ is also continuous as we wanted.
+\end{proof}
+\cleardoublepage
+\begin{proof}{\textbf{Exercise 3.32.}}
+\begin{itemize}
+    \item [(a)] Let us consider three topologies on the set
+    $X_1 \times X_2 \times X_3$ obtained by thinking of it as
+    $X_1 \times X_2 \times X_3$, $(X_1 \times X_2) \times X_3$ and 
+    $X_1 \times (X_2 \times X_3)$, we want to show they are equal.
+
+    Let us consider the following bases
+    \begin{align*}
+        \mathcal{B}_1 &= \{U_1 \times U_2 \times U_3
+        : U_i \text{ is an open subset of }X_i, i= 1,2,3\}\\
+        \mathcal{B}_2' &= \{U_1 \times U_2
+        : U_i \text{ is an open subset of }X_i, i= 1,2\}\\
+        \mathcal{B}_2 &= \{U \times U_3
+        : U_3 \text{ is an open subset of }X_3\\
+        &\quad\text{ and }U\text{ is an open subset of }\mathcal{B}_2' \}\\
+        \mathcal{B}_3' &= \{U_2 \times U_3
+        : U_i \text{ is an open subset of }X_i, i= 2,3\}\\
+        \mathcal{B}_3 &= \{U_1 \times U
+        : U_1 \text{ is an open subset of }X_1\\
+        &\quad\text{ and }U\text{ is an open subset of }\mathcal{B}_3' \}
+    \end{align*}
+    Where $\mathcal{B}_1$ generates the topology of $X_1 \times X_2 \times X_3$,
+    $\mathcal{B}_2$ generates the topology of $(X_1 \times X_2)\times X_3$ and
+    $\mathcal{B}_3$ generates the topology of $X_1 \times (X_2 \times X_3)$.
+
+    Let $V_1 \times V_2 \times V_3 \in \mathcal{B}_1$ then
+    $V_i$ is open in $X_i$ for $i =1, 2, 3$ then
+    $V_1 \times V_2 \in \mathcal{B}_2'$ and $V_2 \times V_3 \in \mathcal{B}_3'$
+    and then $(V_1 \times V_2) \times V_3 \in \mathcal{B}_2$
+    and $V_1 \times (V_2 \times V_3) \in \mathcal{B}_3$.
+
+    Let $(V_1 \times V_2) \times V_3 \in \mathcal{B}_2$ then
+    $V_1 \times V_2 \in \mathcal{B}_2'$ and hence $V_1,V_2$ are open in $X_1,X_2$
+    respectively but also we know that $V_3$ is open in $X_3$ then
+    $V_1 \times V_2 \times V_3 \in \mathcal{B}_1$
+    but also since $V_2 \times V_3 \in \mathcal{B}_3'$ we have that
+    $V_1 \times (V_2 \times V_3) \in B_3$.
+
+    Finally, let $V_1 \times (V_2 \times V_3) \in \mathcal{B}_3$ then in the
+    same way we can show that $V_1 \times V_2 \times V_3 \in \mathcal{B}_1$
+    and that $(V_1 \times V_2) \times V_3 \in B_2$.
+
+    This implies that $\mathcal{B}_1 = \mathcal{B}_2 = \mathcal{B}_3$ and
+    therefore they all generate the same topology.
+\cleardoublepage
+    \item [(b)] Let $f: X_i \to X_1 \times ... \times X_n$ be a map
+    given by $$f(x) = (x_1, ..., x_{i-1}, x, x_{i+1}, ..., x_n)$$
+    we want to show that $f$ is a topological embedding of $X_i$ into
+    the product space.
+
+    Let us apply the Characteristic Property of the Product Topology when
+    $Y = X_i$ i.e.
+    \[\begin{tikzcd}
+        & X_1 \times ... \times X_n \arrow[d,"\pi_j"] \\
+        X_i \arrow[ur,"f"]\arrow[r,"f_j"] & X_j
+    \end{tikzcd}\]
+    then we want to show that each
+    $f_j = \pi_j \circ f$ is continuous  for $j = 1,..., n$
+    so then $f$ is continuous.
+    
+    Let $j = i$, given that $f$ sends $x \in X_i$ to
+    $(x_1, ..., x_{i-1}, x, x_{i+1}, ..., x_n)$
+    then applying the canonical projection $\pi_i$ we send
+    $(x_1, ..., x_{i-1}, x, x_{i+1}, ..., x_n)$ to $x$ therefore $f_i$
+    is the identity map which is continuous.
+
+    If $j \neq i$ we have that $f$ sends $x \in X_i$ to
+    $(x_1, ..., x_{i-1}, x, x_{i+1}, ..., x_n)$
+    then applying the canonical projection $\pi_j$ we send
+    $(x_1, ..., x_{i-1}, x, x_{i+1}, ..., x_n)$ to $x_j$ which is a constant.
+    Hence $f_j$ sends $x$ to some constant $x_j$ which is continuous.
+
+    Therefore for each $j$, we have that $f_j$ is continuous
+    and hence $f$ is continuous. 
+
+    Also, if $f(x) = f(y)$ where $x, y \in X_i$ then
+    $$(x_1, ..., x_{i-1}, x, x_{i+1}, ..., x_n)
+    = (x_1, ..., x_{i-1}, y, x_{i+1}, ..., x_n)$$
+    hence $x = y$, therefore $f$ is also injective.
+
+    Now we have to prove that $f$ is a homeomorphism to its image.
+    Let $U$ be an open set in $X_i$ then
+    $$f(U) = \{x_1\} \times ... \times \{x_{i-1}\} \times U
+    \times \{x_{i+1}\} \times ... \times \{x_n\}$$
+    which is open in
+    $$f(X_i) = \{x_1\} \times ... \times \{x_{i-1}\} \times X_i
+    \times \{x_{i+1}\} \times ... \times \{x_n\}$$
+    Since each $\{x_j\}$ is open in $\{x_j\}$ for $j \neq i$ and $U$ is open
+    in $X_i$ by definition. Therefore $f^{-1}$ is continuous.
+
+    We already know that $f$ is continuous and bijective
+    to its image hence $f$ is a homeomorphism from $X_i$ to $f(X_i)$. 
+
+    Joining what we have proven we see that $f$ is a topological embedding of
+    $X_i$ into the product space as we wanted.
+
+    \item [(c)] Let $\pi_i$ be the canonical projection we want to show
+    that it's an open map.
+
+    Let $V$ be an open subset of $X_1 \times ... \times X_n$ then $V$ can be
+    written as a union of elements of the basis $\mathcal{B}$. Let
+    $V = \cup_\alpha U_\alpha$ where $U_\alpha \in \mathcal{B}$ then
+    $\pi_i(V) = \pi_i(\cup_\alpha U_\alpha) = \cup_\alpha \pi_i(U_\alpha)$
+    hence it's enough to prove that $\pi_i(U_\alpha)$ is open.
+
+    Let $U_1 \times ... \times U_n \in \mathcal{B}$ which is an open subset of
+    $X_1 \times ... \times X_n$ then $\pi_i(U_1 \times ... \times U_n) = U_i$
+    and $U_i$ by definition is open. Therefore $\pi_i$ is an open map.
+
+    \item [(d)] Let $\mathcal{B}_i$ be a basis for the topology of $X_i$
+    we want to prove that
+    $$\mathcal{B} = \{B_1 \times ... \times B_n: B_i \in \mathcal{B}_i\}$$
+    is a basis for the product topology on $X_1 \times ... \times X_n$.
+
+    Let $U \in X_1 \times ... \times X_n$ be an open set in the product
+    topology and let $x \in U$.
+    Then there is an open subset $U_1 \times ... \times U_n$ where each $U_i$
+    is an open subset of $X_i$ for $i =1,..,n$
+    where $x \in U_1 \times ... \times U_n \subseteq U$.
+    But then each $U_i$ can be written as $U_i = \bigcup_\alpha B_{i\alpha}$
+    hence
+    $x \in \bigcup_\alpha B_{1\alpha} \times ... \times \bigcup_\beta B_{n\beta}$
+    which implies that $x \in B_{1\alpha} \times ... \times B_{n\beta}$
+    where each $B_{i\mu} \in \mathcal{B}_i$ therefore
+    $$x \in B_1 \times ...\times B_n \subset U_1 \times ... \times U_n$$
+    where $B_1 \times ...\times B_n \in \mathcal{B}$.
+    Finally, this implies that $\mathcal{B}$ is a basis
+    for the product topology.
+\cleardoublepage
+    \item [(e)] Let $S_i$ be a subspace of $X_i$ for $i = 1,...,n$ we want to
+    prove that the product topology and the subspace topology on
+    $S_1 \times ... \times S_n \subseteq X_1 \times ... \times X_n$ are
+    equal.
+
+    Let $\Topo_p$ and $\Topo_s$ be the product topology and 
+    the subspace topology on $S_1 \times ... \times S_n$ respectively.
+    
+    Let $U \in \Topo_p$ be an open set then we can write $U$ as
+    $$U = \bigcup_\alpha U_{1\alpha} \times ... \times U_{n\alpha}$$
+    where each $U_{i\alpha}$ is an open subset of $S_i$ then since each $S_i$
+    is a subspace of $X_i$ each $U_{i\alpha}$ can be written as
+    $U_{i\alpha} = S_i \cap V_{i\alpha}$
+    for some open subset $V_{i\alpha} \subseteq X_i$, therefore we can write that
+    \begin{align*}
+        U &= \bigcup_\alpha \big[(V_{1\alpha} \cap S_1)
+        \times ... \times (V_{n\alpha} \cap S_n)\big]\\
+        &= \bigcup_\alpha \big[(V_{1\alpha} \times ... \times V_{n\alpha})
+        \cap (S_1 \times ... \times S_n)\big]
+    \end{align*}
+    Then by the definition of subspace topology on $S_1 \times ... \times S_n$
+    this implies that $U \in \Topo_s$ and since $U$ is arbitrary we have that
+    $\Topo_p \subseteq \Topo_s$.
+
+    Let $U \in \Topo_s$ be an open set then by definition of subpace topology
+    on $S_1 \times ... \times S_n$, $U$ can be written as
+    \begin{align*}
+        U &= (S_1 \times ... \times S_n) \cap
+        \bigcup_\alpha (V_{1\alpha} \times ... \times V_{n\alpha})\\
+        &= \bigcup_\alpha
+        [(S_1 \times ... \times S_n) \cap (V_{1\alpha} \times ... \times V_{n\alpha})]\\
+        &= \bigcup_\alpha [(V_{1\alpha} \cap S_1) \times ... \times (V_{n\alpha} \cap S_n)]
+    \end{align*}
+    where we used that
+    $V = \bigcup_\alpha (V_{1\alpha} \times ... \times V_{n\alpha})$
+    is an open set of $X_1 \times ... \times X_n$.
+    Also, each $V_{i\alpha}$ is an open subset of $X_i$ 
+    and since each $S_i$ is a subspace of $X_i$ each
+    $U_{i\alpha} = V_{i\alpha} \cap S_i$ is an open subset of $S_i$
+    then $U$ can be written as
+    $$U = \bigcup_\alpha U_{1\alpha} \times ... \times U_{n\alpha}$$
+    Then by definition of product topology on $S_1 \times ... \times S_n$
+    this implies that $U \in \Topo_p$ and since $U$ is arbitrary we have that
+    $\Topo_s \subseteq \Topo_p$.
+
+    Finally, joining what we proved above we have that $\Topo_s = \Topo_p$.
+\cleardoublepage
+    \item [(f)] Let $p,q \in X_1 \times ... \times X_n$ be two points then
+    they can be written as $p = (p_1, ..., p_n)$ and $q = (q_1, ..., q_n)$
+    where each $p_i, q_i$ is in $X_i$ also, let us assume $p \neq q$ .
+    
+    Given that $p \neq q$ then there is at least a $p_i$ and a $q_i$ such that
+    $p_i \neq q_i$ for those $p_i, q_i$ which are different let us take
+    two open sets $U_i$ and $V_i$ such that $p_i \in U_i$ and $q_i \in V_i$
+    but also $U_i \cap V_i = \emptyset$ which we know we can select in this way
+    since each $X_i$ is Hausdorff.
+
+    For those $p_i, q_i$ where $p_i = q_i$ then we select $X_i$ which is open.
+
+    Let us assume without loss of generality that only $p_1 \neq q_1$
+    then we can build two open sets according to the product topology
+    $U = U_1 \times X_2 \times ... \times X_n$ and
+    $V = V_1 \times X_2 \times ... \times X_n$ such that
+    \begin{align*}
+        U \cap V &= (U_1 \times X_2 \times... \times X_n)
+          \cap (V_1 \times X_2 \times ... \times X_n)\\
+            &= (U_1 \cap V_1) \times (X_2 \cap X_2) \times 
+            ... \times (X_n \cap X_n)\\
+            &= \emptyset \times X_2 \times ... \times X_n\\
+            &= \emptyset
+    \end{align*}
+    Therefore in any case this implies that $X_1 \times ... \times X_n$
+    is Hausdorff as well.
+    \item [(g)] (Without loss of generality we set $n=2$)
+    Let $p = (x_1, x_2) \in X_1 \times X_2$ and
+    let us consider a collection of neighborhoods of $p$ 
+    $$\mathcal{B}_p = \{B_1 \times B_2: B_1 \in \mathcal{B}_{x_1}
+    \text{ and } B_2 \in \mathcal{B}_{x_2}\}$$
+    Where $\mathcal{B}_{x_1}$ and $\mathcal{B}_{x_2}$ are the countable
+    neighborhood bases of $x_1 \in X_1$ and $x_2 \in X_2$ respectively
+    since $X_1$ and $X_2$ are first countable.
+    We want to show that $\mathcal{B}_p$ is a countable neighborhood basis of $p$.
+    
+    Let $U_p \subseteq X_1 \times X_2$ be a neighborhood of $p$ then by the product
+    topology we know that there is a basis subset $U_1 \times U_2$
+    such that $p \in U_1 \times U_2 \subseteq U_p$
+    where $U_1, U_2$ are open sets of $X_1$ and $X_2$ respectively.
+    Then we have that $x_1 \in U_1$ and $x_2 \in U_2$ and hence there is
+    $B_1 \in \mathcal{B}_{x_1}$ and $B_2 \in \mathcal{B}_{x_2}$ such that
+    $x_1 \in B_1 \subseteq U_1$ and $x_2 \in B_2 \subseteq U_2$
+    so by the cartesian product properties we have that
+    $$p \in B_1 \times B_2 \subseteq U_1 \times U_2 \subseteq U_p$$
+    Therefore given that the cartesian product of countable sets is countable
+    then $\mathcal{B}_p$ is a countable neighborhood basis of $p$
+    and by definition of first countability $X_1 \times X_2$
+    is also first countable.
+\cleardoublepage
+    \item [(h)] (Without loss of generality we set $n=2$)
+    We know that both $X_1$ and $X_2$ are second countable so they admit
+    a countable basis $\mathcal{B}_1$ and $\mathcal{B}_2$ respectively.
+    Let us consider the collection
+    $$\mathcal{B} = \{B_1\times B_2 :
+    B_1 \in \mathcal{B}_1 \text{ and }B_2 \in \mathcal{B}_2\}$$
+    Then by part (d) we have that $\mathcal{B}$ is a basis for
+    the product topology on $X_1 \times X_2$.
+
+    Also, the cartesian product of countable sets is countable
+    then $X_1 \times X_2$ admits a countable basis and therefore
+    it is second countable.
+\end{itemize}
+\end{proof}
+\begin{proof}{\textbf{Exercise 3.34.}}
+    Let $f_1, f_2: X \to \R$ be two continuous functions. Their pointwise sum
+    and product are defined by $(f_1 + f_2)(x) = f_1(x) + f_2(x)$
+    and $(f_1f_2)(x) = f_1(x) f_2(x)$.
+
+    Let us define $f: X \to \R^2$ as $f(x) = (f_1(x), f_2(x))$ so we can build
+    a diagram as follows
+    \[\begin{tikzcd}
+        & \R^2 \arrow[d,"\pi_1"] \arrow[dr, bend left,"\pi_2"] & \\
+        X \arrow[ur,"f"]\arrow[r,"f_1"]\arrow[rr, bend right, "f_2"] & \R &  \R
+    \end{tikzcd}\]
+    So because of the Characteristic Property and since $f_1$ and $f_2$
+    are continuous then $f$ is continuous.
+
+    Finally since the sum function $+: \R^2 \to \R$ and
+    the product function $\cdot: \R^2 \to \R$ are continuous
+    as well then the compositions $+(f(x)) = f_1(x) + f_2(x)$ and
+    $\cdot(f(x)) = f_1(x)\cdot f_2(x)$ are also continuous.
+\end{proof}
+\cleardoublepage
+\begin{proof}{\textbf{Exercise 3.40.}}
+    We want to prove that the disjoint union topology on
+    $\coprod_{\alpha \in A} X_\alpha$ is indeed a topology.
+    We defined a subset to be open if and only if its intersection with each
+    set $X_\alpha$ is open in $X_\alpha$. Hence
+    \begin{itemize}
+        \item[(i)] We first check that $\coprod_{\alpha \in A} X_\alpha$ and
+        $\emptyset$ are in the topology.
+        
+        We know that $\coprod_{\alpha \in A} X_\alpha \cap X_\alpha = X_\alpha$
+        and $X_\alpha$ is open in $X_\alpha$ for any $\alpha \in A$ then
+        $\coprod_{\alpha \in A} X_\alpha$ is in the disjoint union topology.
+
+        On the other hand, we know that $\emptyset \cap X_\alpha = \emptyset$
+        and $\emptyset$ is open in $X_\alpha$ for any $\alpha \in A$ then
+        $\emptyset$ is in the disjoint union topology.
+
+        \item[(ii)] Let $U, V$ be open sets of the disjoint union topology
+        we want to prove that $U \cap V$ is also in the disjoint union
+        topology.
+
+        We know that $U \cap X_\alpha$ and $V \cap X_\alpha$ are open in
+        $X_\alpha$ for any $\alpha \in A$. Hence
+        $(U \cap X_\alpha) \cap (V \cap X_\alpha)$
+        is also open in $X_\alpha$ because the intersection
+        of finitely many open sets is open in $X_\alpha$. But also we see that
+        \begin{align*}
+            (U \cap X_\alpha) \cap (V \cap X_\alpha)
+            &= (U \cap V) \cap (X_\alpha \cap X_\alpha)
+            = (U \cap V) \cap X_\alpha
+        \end{align*}
+        Therefore we see that $U \cap V$ is open in $X_\alpha$ and hence
+        $U \cap V$ is in the disjoint topology.
+        
+        Finally, in the same way, if we consider finitely
+        many open sets of the disjoint union topology we see that
+        $\bigcap_{i=1}^n (U_1 \cap X_\alpha)$ where each $U_i$ is an open set
+        of the disjoint union topology is open in $X_\alpha$.
+
+        \item[(iii)] Let $U, V$ be open sets of the disjoint union topology
+        we want to prove that $U \cup V$ is also in the disjoint union
+        topology.
+        
+        We know that $U \cap X_\alpha$ and $V \cap X_\alpha$ are open in
+        $X_\alpha$ for any $\alpha \in A$. Hence 
+        $(U \cap X_\alpha) \cup (V \cap X_\alpha)$
+        is also open in $X_\alpha$ because the union
+        of arbitrarily many open sets is open in $X_\alpha$.
+        But also we see that
+        \begin{align*}
+            (U \cap X_\alpha) \cup (V \cap X_\alpha)
+            &= X_\alpha \cap (U \cup V)
+        \end{align*}
+        Therefore we see that $U \cup V$ is open in $X_\alpha$ and hence
+        $U \cup V$ is in the disjoint topology.
+        
+        Finally, in the same way, if we consider arbitrarily
+        many open sets of the disjoint union topology we see that
+        $\bigcup_{\beta \in B} (U_\beta \cap X_\alpha)$ where each $U_\beta$
+        is an open set of the disjoint union topology is open in $X_\alpha$.
+    \end{itemize}
+    Adding all we have proven we see that the disjoint union topology is indeed
+    a topology on $\coprod_{\alpha \in A} X_\alpha$.
+\end{proof}
+\cleardoublepage
+\begin{proof}{\textbf{Exercise 3.43.}}
+    Let $(X_\alpha)_{\alpha \in A}$ be an indexed family of topological
+    spaces
+    \begin{itemize}
+        \item [(a)] $(\Rightarrow)$
+        Let $U \subseteq \coprod_{\alpha \in A} X_\alpha$
+        be a closed subset then $\coprod_{\alpha \in A} X_\alpha \setmin U$
+        is an open subset, therefore
+        \begin{align*}
+            (\coprod_{\alpha \in A} X_\alpha \setmin U) \cap X_\alpha
+            = (\coprod_{\alpha \in A} X_\alpha \cap X_\alpha) \setmin U
+            = X_\alpha \setmin U
+        \end{align*}
+        is open in $X_\alpha$ for every $\alpha \in A$ hence
+        $$X_\alpha \setmin (X_\alpha \setmin U)
+        = (X_\alpha \cap U) \cup (X_\alpha \setmin X_\alpha) = X_\alpha \cap U$$
+        is closed in $X_\alpha$ for every $\alpha \in A$
+
+        $(\Leftarrow)$ Let $U \subseteq \coprod_{\alpha \in A} X_\alpha$
+        be a subset such that $X_\alpha \cap U$ is closed in $X_\alpha$
+        for every $\alpha \in A$ then 
+        \begin{align*}
+            X_\alpha \setmin (X_\alpha \cap U)
+            = (X_\alpha \setmin X_\alpha) \cup (X_\alpha \setmin U)
+            = X_\alpha \setmin U
+        \end{align*}
+        is open in $X_\alpha$ but also we see that
+        $X_\alpha \setmin U = (X_\alpha \setmin U) \cap X_\alpha$
+        which implies that $X_\alpha \setmin U$ is open in
+        $\coprod_{\alpha \in A} X_\alpha$ by the definition of the disjoint
+        union topology, therefore
+        \begin{align*}
+            \coprod_{\alpha \in A} X_\alpha \setmin (X_\alpha \setmin U)
+            = (\coprod_{\alpha \in A} X_\alpha \cap U)
+            \cup (\coprod_{\alpha \in A} X_\alpha \setmin X_\alpha)
+            = U
+        \end{align*}
+        is closed in $\coprod_{\alpha \in A} X_\alpha$. Where we used that
+        this must be true for every $\alpha\in A$ and hence
+        $\coprod_{\alpha \in A} X_\alpha \setmin X_\alpha = \emptyset$.
+
+        \item [(b)] Let
+        $\iota_\alpha: X_\alpha \to \coprod_{\alpha \in A} X_\alpha$
+        be the canonical injection map for every $\alpha \in A$.
+        We want to prove it's a topological embedding and an open
+        and closed map.
+
+        Let $\iota_\alpha(x) = \iota_\alpha(y)$ for some $x,y \in X_\alpha$
+        then by definition $\iota_\alpha(x) = x \in X_\alpha$
+        and $\iota_\alpha(y) = y \in X_\alpha$ hence if
+        $\iota_\alpha(x) = \iota_\alpha(y)$ we have that $x = y$.
+        Therefore $\iota_\alpha$ is injective.
+
+        Let $U \subseteq \coprod_{\alpha \in A} X_\alpha$ be an open subset then
+        by definition $X_\alpha \cap U$ is open in $X_\alpha$ but also
+        \begin{align*}
+            \iota^{-1}_\alpha(U) = \iota^{-1}_\alpha(X_\alpha \cap U) = 
+            X_\alpha \cap U
+        \end{align*}
+        Therefore since we saw that $X_\alpha \cap U$ is an open set in 
+        $X_\alpha$ then $\iota_\alpha$ is continuous.
+
+        Let us consider now the inverse map restricted to the image of
+        $\iota_\alpha$ i.e.
+        $$\iota_\alpha^{-1}\big|_{\iota_\alpha(X_\alpha)}: \iota_\alpha(X_\alpha) \to X_\alpha$$
+        we know that $\iota_\alpha(X_\alpha) = X_\alpha$ hence
+        $\iota_\alpha^{-1}\big|_{\iota_\alpha(X_\alpha)}$ is the identity map
+        which is continuous.
+
+        Therefore $\iota_\alpha$ is a topological embedding.
+
+        Let now $U \subseteq X_\alpha$ be an open set then
+        $\iota_\alpha(U) = U = U \cap X_\alpha$ is open by definition
+        but for any other $\beta \in A$ where $\beta \neq \alpha$ and 
+        $X_\alpha \neq X_\beta$ we have that
+        $U \cap X_\beta = \emptyset$ which is also open. Therefore $U$
+        is open in $\coprod_{\alpha \in A} X_\alpha$ and $\iota_\alpha$
+        is an open map.
+
+        Let now $V \subseteq X_\alpha$ be a closed set then
+        $\iota_\alpha(V) = V = V \cap X_\alpha$ is closed by what we proved
+        in part (a) but for any other $\beta \in A$ where $\beta \neq \alpha$
+        and  $X_\alpha \neq X_\beta$ we have that
+        $V \cap X_\beta = \emptyset$ which is also closed. Therefore $V$
+        is closed in $\coprod_{\alpha \in A} X_\alpha$ and $\iota_\alpha$
+        is a closed map too.
+
+        \item [(c)] Let each $X_\alpha$ be Hausdorff then
+        for each pair of points $p_1, p_2 \in X_\alpha$ there exist
+        neighborhoods $U_1$ of $p_1$ and $U_2$ of $p_2$ where
+        $U_1 \cap U_2 = \emptyset$.
+
+        If we let $p_1, p_2 \in \coprod_{\alpha \in A} X_\alpha$ then if 
+        $p_1$ and $p_2$ belong to the same $X_\alpha$ we are done. But if
+        $p_1 \in X_\alpha$ and $p_2 \in X_\beta$ for some $\alpha, \beta \in A$
+        such that $\alpha \neq \beta$ and $X_\alpha \neq X_\beta$ then
+        we can define $U_1 = X_\alpha$ and $U_2 = X_\beta$ as the neighborhoods
+        of $p_1$ and $p_2$ respectively where we have that
+        $U_1 \cap U_2 = \emptyset$ since every $X_\alpha$ is disjoint from each
+        other.
+
+        Therefore $\coprod_{\alpha \in A} X_\alpha$ is Hausdorff as well.
+
+        \item [(d)] Let each $X_\alpha$ to be first countable then for each 
+        $p \in X_\alpha$ there is a countable collection of neighborhoods
+        $\mathcal{B}_p^\alpha$ such that any neighborhood of $p$ contains some
+        $B \in \mathcal{B}_p^\alpha$.
+
+        Let now $p \in \coprod_{\alpha \in A} X_\alpha$ and a neighborhood 
+        $U \subseteq \coprod_{\alpha \in A} X_\alpha$ of $p$.
+        Then $p \in X_\beta$ for some $\beta \in A$.
+
+        Also, by the definition of disjoint union topology, we know that
+        $U \cap X_\beta$ is open in $X_\beta$ then $U \cap X_\beta$ is 
+        a neighborhood of $p$ and since $X_\beta$ is first
+        countable there is some $B \in \mathcal{B}_p^\beta$ such that
+        $B \subseteq U\cap X_\alpha \subseteq U$. Therefore for each
+        $p \in \coprod_{\alpha \in A} X_\alpha$ we have a countable
+        neighborhood basis i.e. $\coprod_{\alpha \in A} X_\alpha$
+        is first countable.
+
+        \item [(e)] Let each $X_\alpha$ be second countable and $A$ the index
+        set be countable. We want to prove that
+        $\coprod_{\alpha \in A} X_\alpha$ is second countable.
+
+        Let us define a collection $\coprod_{\alpha \in A} \mathcal{B}_\alpha$
+        where each $\mathcal{B}_\alpha$ is the countable basis of $X_\alpha$
+        then this collection is countable since the union of countable sets
+        is countable.
+
+        Let now $U \subseteq \coprod_{\alpha \in A} X_\alpha$ be an open set
+        then by the definition of disjoint union topology, we know that
+        $U \cap X_\alpha$ is open in each $X_\alpha$ and hence there is
+        $B \in \mathcal{B}_\alpha$ such that $B \subseteq U \cap X_\alpha$
+        but this implies that there is
+        $B \in \coprod_{\alpha \in A} \mathcal{B}_\alpha$ such that
+        $B \subseteq U \cap X_\alpha \subseteq U$.
+        Therefore $\coprod_{\alpha \in A} X_\alpha$ admits a countable basis
+        i.e. $\coprod_{\alpha \in A} X_\alpha$ is second countable.
+    \end{itemize}
+\end{proof}
+\cleardoublepage
+\begin{proof}{\textbf{Exercise 3.44.}}
+    Let $(X_\alpha)_{\alpha\in A}$ be an indexed family of nonempty
+    $n$-manifolds.
+    \begin{itemize}
+        \item [($\Rightarrow$)] Let $\coprod_{\alpha\in A} X_\alpha$ be a
+        $n$-manifold then $\coprod_{\alpha\in A} X_\alpha$
+        is second countable. Let us suppose that $A$ is uncountable we want
+        to arrive at a contradiction.
+
+        Let us take a collection of open sets $U_\alpha \subseteq X_\alpha$
+        for every $\alpha \in A$ then $U_\alpha$ is also open in
+        $\coprod_{\alpha\in A} X_\alpha$.
+        Since $\coprod_{\alpha\in A} X_\alpha$ is second countable then it
+        admits a countable basis $\mathcal{B}$ then there is
+        some $B_\alpha \in \mathcal{B}$ such that $B_\alpha \subseteq U_\alpha$.
+        % which implies that $B_\alpha \subseteq X_\alpha$.
+        But this must be true for every open set $U_\alpha$ in the collection
+        hence there are uncountably many $B_\alpha$ in
+        $\mathcal{B}$ which is a contradiction. Therefore it must happen that
+        $A$ is countable.
+
+        \item [($\Leftarrow$)] Let $A$ be countable.
+        
+        Since every $X_\alpha$ for $\alpha \in A$ is an $n$-manifold then 
+        each one of them is Hausdorff so by what we showed
+        in Proposition 3.42 (c) we have that $\coprod_{\alpha\in A} X_\alpha$
+        is Hausdorff.
+
+        Since every $X_\alpha$ for $\alpha \in A$ is an $n$-manifold then 
+        each one of them is second countable. Also, $A$ is countable
+        so by what we showed in Proposition 3.42 (e) we have that
+        $\coprod_{\alpha\in A} X_\alpha$ is second countable.
+
+        Finally, let $p \in \coprod_{\alpha\in A} X_\alpha$ then $p \in X_\alpha$
+        for some $\alpha \in A$. Since $X_\alpha$ is an $n$-manifold then
+        there is a neighborhood of $p$ in $X_\alpha$ which is homeomorphic
+        to an open ball in $\R^n$. But $p$ was arbitrary so this must happen
+        for every $p \in \coprod_{\alpha\in A} X_\alpha$. Therefore
+        $\coprod_{\alpha\in A} X_\alpha$ is Locally Euclidean.
+
+        Joining the above results we see that $\coprod_{\alpha\in A} X_\alpha$
+        is an $n$-manifold.
+    \end{itemize}
+\end{proof}
+\cleardoublepage
+\begin{proof}{\textbf{Exercise 3.45.}}
+    Let $X$ be any space and let $Y$ be a discrete space.
+    Then by definition $X \times Y$ is the collection of all ordered
+    pairs $(x,y)$ such that $x \in X$ and $y \in Y$.
+    But also we know by the definition of disjoint union that
+    $\coprod_{y \in Y} X_y$ is the set of all ordered pairs $(x, y)$ where
+    $x \in X$ and $y \in Y$. Therefore $X \times Y = \coprod_{y \in Y} X_y$.
+
+    Let $\Topo_p$ be the product topology generated by the following basis
+    \begin{align*}
+        \mathcal{B} = \{U \times V:
+        U \text{ is open in }X\text{ and }V \text{ is open in }Y\}
+    \end{align*}
+    Let also $B \in \mathcal{B}$ then $B = U \times V$ for some
+    $U \subset X$ and $V \subset Y$ then $B$ is
+    % $$B = \{(x,y): x\in U, y\in V\}$$
+    the collection of ordered pairs $(x,y)$ such that $x \in U$
+    and $y \in V$.
+
+    Now we want to prove that $B \in \Topo_d$ where $\Topo_d$ is the disjoint
+    union topology. We can write $B$ as
+    $B = U \times V = \coprod_{y \in V} U \times \{y\}$
+    then we see that
+    \begin{align*}
+        \bigg(\coprod_{y \in V} U \times \{y\}\bigg) \cap X_y
+            &= U \times \{y\} \cap X_y\\
+            &= U \times \{y\} \cap X \times \{y\}\\
+            &= (U \cap X) \times \{y\}
+    \end{align*}
+    where $U \cap X = U$ which is open by definition and $\{y\}$ is open
+    for any $y \in V$ because $Y$ is a discrete space.
+    Therefore $U \times \{y\}$ is open in $X_y$ and hence $B \in \Topo_d$
+    but since every open set of $\Topo_p$ is the union of basis elements
+    then every open subset of $\Topo_p$ can be constructed with elements of
+    $\Topo_d$ i.e. $\Topo_p \subseteq \Topo_d$.
+    
+    Let now $U \in \Topo_d$ then $U \cap X_y$ is open for every $X_y$.
+    Then we can write $U$ as
+    \begin{align*}
+        U = \bigcup_{y \in Y} U \cap X_y
+        = \bigcup_{y \in Y} U \cap (X \times \{y\})
+        = \bigcup_{y \in Y} (U \cap X) \times \{y\}
+    \end{align*}
+    Therefore we can write $U$ as the union of a set of cartesian products
+    $(U \cap X) \times \{y\}$ where $U \cap X$ is open in $X$ since
+    $U \in \Topo_d$ and $\{y\}$ is open in $Y$ since $Y$ is a discrete space.
+    Therefore $U \in \Topo_p$ which implies that $\Topo_d \subseteq \Topo_p$.
+
+    Finally, by joining the results we got we have that $\Topo_d = \Topo_p$.
+\end{proof}
+\cleardoublepage
+\begin{proof}{\textbf{Exercise 3.46.}}
+    We want to prove that the quotient topology on a set $Y$ is indeed
+    a topology.
+    We defined a subset $U \subseteq Y$ to be open if and only if
+    $q^{-1}(U)$ is open in $X$ for a surjective map $q:X \to Y$ and a
+    topological space $X$.
+    \begin{itemize}
+        \item[(i)] We first check that $Y$ and $\emptyset$ are in the topology.
+        
+        We know that $q^{-1}(Y) = X$ and $X$ is open in $X$ so $Y$ is in the
+        quotient topology.
+
+        On the other hand, we know that $q^{-1}(\emptyset) = \emptyset$ which 
+        is open in $X$ therefore $\emptyset$ is open in $Y$ and hence it is 
+        in the quotient topology 
+
+        \item[(ii)] Let $U, V$ be open sets of the quotient topology on $Y$
+        we want to prove that $U \cap V$ is also in the quotient topology.
+ 
+        Suppose $U \cap V \neq \emptyset$ otherwise $U \cap V$ is in the
+        quotient topology.
+        We know that $q^{-1}(U)$ and $q^{-1}(V)$ are open in $X$.
+        Hence $q^{-1}(U) \cap q^{-1}(V)$ is open in $X$ but also we have that
+        \begin{align*}
+            q^{-1}(U) \cap q^{-1}(V)
+            &= \{x \in X : q(x) \in U\} \cap \{x \in X : q(x) \in V\}\\
+            &= \{x \in X : q(x) \in U \cap V\}\\
+            &= q^{-1}(U \cap V)
+        \end{align*}
+        This implies that $U \cap V$ is open in $Y$ and hence that $U \cap V$
+        is in the quotient topology.
+        
+        \item[(iii)] Let $U, V$ be open sets of the quotient topology
+        we want to prove that $U \cup V$ is also in the quotient
+        topology.
+        
+        We know that $q^{-1}(U)$ and $q^{-1}(V)$ are open in $X$.
+        Hence $q^{-1}(U) \cup q^{-1}(V)$ is open in $X$ but also we have that
+        \begin{align*}
+            q^{-1}(U) \cup q^{-1}(V)
+            &= \{x \in X : q(x) \in U\} \cup \{x \in X : q(x) \in V\}\\
+            &= \{x \in X : q(x) \in U \cup V\}\\
+            &= q^{-1}(U \cup V)
+        \end{align*}
+        This implies that $U \cup V$ is open in $Y$ and hence that $U \cup V$
+        is in the quotient topology.
+        
+        Finally, if we consider arbitrarily many open sets $U_\alpha$ of
+        the quotient topology we see that
+        $\bigcup_{\alpha \in A} q^{-1}(U_\alpha)
+        = q^{-1}(\bigcup_{\alpha \in A} U_\alpha)$
+        which is open in $X$ and therefore $\bigcup_{\alpha \in A} U_\alpha$
+        is in the quotient topology.
+    \end{itemize}
+    Adding all we have proven we see that the quotient topology is indeed
+    a topology on $Y$.
+\end{proof}
+\cleardoublepage
+\begin{proof}{\textbf{Exercise 3.55.}}
+    Let $(X_\alpha)_{\alpha \in A}$ be a set of nonempty Hausdorff spaces
+    and let $\bigvee_{\alpha \in A} X_\alpha$ be the wedge sum of the spaces.
+    We want to prove that $\bigvee_{\alpha \in A} X_\alpha$ is Hausdorff.
+
+    Associated with this wedge sum there is a set of base points for each
+    $X_\alpha$ denoted as $\{p_\alpha\}_{\alpha \in A}$ which are equivalent in
+    $\bigvee_{\alpha \in A} X_\alpha$.
+
+    Let us take some point of the base points set
+    $p_1 \in \{p_\alpha\}_{\alpha \in A}$ and some other $p_2 \in X_\alpha$
+    such that $p_1 \neq p_2$ then $p_1$ by definition is in some $X_\beta$
+    where $\alpha$ may be equal to $\beta$ or not.
+    But since we know that $\coprod_{\alpha \in A} X_\alpha$ is Haussdorff
+    if every $X_\alpha$ is Haussdorff then there is $U_1$ of $p_1$ and $U_2$
+    of $p_2$ such that $U_1 \cap U_2 = \emptyset$ for this pair of points.
+
+    Let us suppose now we take $p_1, p_2 \in \{p_\alpha\}_{\alpha \in A}$
+    by definition $p_1 \in X_\alpha$ and $p_2 \in X_\beta$
+    where $\alpha \neq \beta$. Then as before since
+    $\coprod_{\alpha \in A} X_\alpha$ is Haussdorff
+    if every $X_\alpha$ is Haussdorff then there is $U_1$ of $p_1$ and $U_2$
+    of $p_2$ such that $U_1 \cap U_2 = \emptyset$ for this pair of points.
+
+    Finally, if we take $p_1, p_2 \in \coprod_{\alpha \in A} X_\alpha$ 
+    such that $p_1, p_2 \not\in \{p_\alpha\}_{\alpha \in A}$
+    we already know that $\coprod_{\alpha \in A} X_\alpha$ is Haussdorff
+    if every $X_\alpha$ is Haussdorff.
+
+    Therefore joining these cases we see that $\bigvee_{\alpha \in A} X_\alpha$
+    is Hausdorff. 
+\end{proof}
+\begin{proof}{\textbf{Exercise 3.59.}}
+    Let $q: X \to Y$ be any map.
+    \begin{itemize}
+        \item [(a) $\to$ (b)] Let $U \subseteq X$ be saturated with respect
+        to $q$, then $U = q^{-1}(V)$ for some subset $V \subseteq Y$.
+        Then we have that
+        \begin{align*}
+            q^{-1}(q(U)) = q^{-1}(q(q^{-1}(V))) = q^{-1}(V) = U
+        \end{align*}
+        Where we used that $q(q^{-1}(V)) = V$ since $q$ is a surjective map.
+
+        \item [(b) $\to$ (c)] Let $V = q(U)$ be a subset of $Y$ then we can
+        write $U = q^{-1}(V)$. Let $y \in V \subseteq Y$ then
+        $q^{-1}(y) \in q^{-1}(V) = U$ and we can see the same for every
+        $y \in V$ then $U$ is the union of every $q^{-1}(y)$ fiber.
+
+        \item [(c) $\to$ (d)] Let $U$ be a union of fibers.
+        Let $x \in U$ and $x' \in X$ such that $q(x) = q(x')$ we want to show
+        that also $x' \in U$.
+        
+        Since $U$ is a union of fiber must happen that $q^{-1}(y) = x$ for some
+        $y \in Y$ but $y$ must be $q(x)$ since $q^{-1}(q(x)) = \{x,x'\}$ because
+        $q$ is surjective and $q(x) = q(x')$ then $x'$ must be in $U$
+        otherwise $x$ will not be a fiber.
+
+        \item [(d) $\to$ (b)] If $x \in U$ then every $x' \in X$ such that
+        $q(x) = q(x')$ is also in $U$. We want to prove that $U = q^{-1}(q(U))$.
+        
+        Let $x \in U$ such that $q(x) \neq q(x')$ for every other $x' \in X$.
+        then since $q$ is surjective we have that $q^{-1}(q(x)) = x$.
+
+        If we let $x,x' \in U$ such that $q(x) = q(x')$ then also since $q$
+        is surjective we see that $q^{-1}(q(x)) = q^{-1}(q(x')) = x' = x$
+        which implies that in any case if $x \in U$ we can write it as
+        $q^{-1}(q(x))$ therefore must be that $U = q^{-1}(q(U))$.
+    \end{itemize}
+\end{proof}
+\cleardoublepage
+\begin{proof}{\textbf{Exercise 3.61.}}
+\begin{itemize}
+    \item [($\Rightarrow$)] Let $q:X \to Y$ be a surjective map which is also
+    a quotient map. Let $U\subseteq X$ be an open saturated set then there is
+    a subset $V \subseteq Y$ such that $U = q^{-1}(V)$ so we see that
+    $q(U) = q(q^{-1}(V)) = V$ since $q$ is surjective, but also since $q$
+    is a quotient map $V$ is open in $Y$ because $q^{-1}(V) = U$
+    is open in $X$ by definition. Therefore $q$ takes saturated open subsets
+    to open subsets.
+    
+    Now let $U \subseteq X$ be a closed saturated set then there is a subset
+    $V \subseteq Y$ such that $U = q^{-1}(V)$ so we see that
+    $q(U) = q(q^{-1}(V)) = V$ since $q$ is surjective. We want to prove that
+    $V$ is closed. Since $q$ is a quotient map, $Y \setmin V$ is open if
+    $q^{-1}(Y \setmin V)$ is open in $X$ but we see that
+    \begin{align*}
+        q^{-1}(Y \setmin V) = X \setmin q^{-1}(V) = X \setmin U
+    \end{align*}
+    And since we know that $U$ is closed then $X \setmin U$ is open which
+    implies that $Y \setmin V$ is open. Therefore $V$ is closed and 
+    $q$ takes closed saturated sets to closed sets. 
+
+    \item [($\Leftarrow$)] Let $q:X\to Y$ be a surjective map which takes open 
+    saturated sets to open sets. We want to prove that $q$ is a quotient map.
+    Let $V \subseteq Y$ and suppose $V$ is open in $Y$ then there is an
+    open saturated set $U \subseteq X$ such that $q(U) = V$ but since 
+    $U$ is saturated we have that $U = q^{-1}(V)$ which is open in $X$
+    by definition.
+
+    On the other hand, suppose $q^{-1}(V) = U$ is open in $X$ then $U$
+    by definition is saturated but also since $q$ is surjective and 
+    $q$ takes open saturated sets to open sets we have that
+    $q(U) = q(q^{-1}(V)) = V$ is open in $Y$.
+
+    Therefore $q$ is a quotient map.
+
+    Let $q:X\to Y$ be a surjective map which takes closed saturated sets to
+    closed sets. We want to prove that $q$ is a quotient map.
+    Let $V \subseteq Y$ and suppose $V$ is open in $Y$ then
+    $Y \setmin V$ is closed in $Y$ so there is a
+    closed saturated set $U \subseteq X$ such that $q(U) = Y \setmin V$
+    but since  $U$ is saturated we have that $U = q^{-1}(Y \setmin V)$
+    which is closed in $X$ by definition. Then we see that
+    $q^{-1}(Y\setmin V) = X \setmin q^{-1}(V)$ is closed which implies 
+    that $q^{-1}(V)$ is open in $X$.
+
+    On the other hand, suppose $q^{-1}(V)$ is open in $X$ then
+    $X \setmin q^{-1}(V)$ is closed in $X$ but 
+    $X \setmin q^{-1}(V) = q^{-1}(Y \setmin V)$ since $q$ is surjective
+    which implies that $X \setmin q^{-1}(V)$ is saturated by definition.
+    So $q(q^{-1}(Y \setmin V)) = Y\setmin V$ is closed in $Y$ since $q$
+    takes saturated closed sets to closed sets. Therefore $V$ is open in $Y$
+    and $q$ is a quotient map.
+\end{itemize}
+\end{proof}
+\cleardoublepage
+\begin{proof}{\textbf{Exercise 3.62.}}
+\begin{itemize}
+    \item [(a)]
+    Let $f:X \to Y$ and $g:Y\to Z$ be quotient maps, we want to prove
+    $h = g \circ f$ is a quotient map.
+
+    Suppose $U \subseteq Z$ is open then because $g$ is a quotient map
+    we have that $g^{-1}(U)$ is open in $Y$ but also since $f$ is a quotient
+    map we have that $f^{-1}(g^{-1}(U))$ is open in $X$.
+    Therefore $h^{-1}(U) = f^{-1}(g^{-1}(U))$ is open.
+
+    Now suppose $h^{-1}(U)$ is open in $X$ for some $U \subseteq Z$. We want
+    to prove that $U$ is open in $Z$. Since $h^{-1}(U)$ is open then
+    $f^{-1}(g^{-1}(U))$ is open but since $f$ is a quotient map this implies
+    that $g^{-1}(U)$ is open in $Y$ but since $g$ is also a quotient map
+    must be that also $U$ is open in $Z$.
+
+    Therefore $h: X \to Z$ is a quotient map.
+
+    \item [(b)]
+    Let $q: X \to Y$ be an injective quotient map, we want to prove it is a
+    homeomorphism.
+
+    Given that $q$ is both surjective and injective then $q$ is a bijection.
+
+    Given that $q$ is a quotient map then if $U$ is open in $Y$ we have that
+    $q^{-1}(U)$ is open in $X$ and hence $q$ is continuous.
+
+    Suppose $U \subseteq X$ is open we want to prove that $q(U)$ is open in $Y$.
+    Given that $q$ is bijective we have that
+    $q^{-1}(q(U)) = U$ but this implies that $U$ is saturated, so if a set
+    is open in $X$ must be saturated with respect to $q$ but we know that 
+    quotient maps send open saturated sets to open sets therefore $q(U)$ 
+    is open in $Y$ as we wanted and thus $q^{-1}$ is continuous.
+
+    Joining above results we see that $q$ is a homeomorphism.
+
+    \item [(c)]
+    Let $q: X \to Y$ be a quotient map.
+
+    ($\Rightarrow$) Let $K \subseteq Y$ be a closed subset.
+    Then $Y \setmin K$ is open in $Y$ so $q^{-1}(Y \setmin K)$ is open because
+    $q$ is a quotient map.
+    But also we see that $q^{-1}(Y \setmin K) = X \setmin q^{-1}(K)$ so
+    $X \setmin q^{-1}(K)$ is open in $X$ which implies that $q^{-1}(K)$ is
+    closed.
+
+    ($\Leftarrow$) Let $q^{-1}(K)$ be closed in $X$ for some set
+    $K \subseteq Y$ then $X \setmin q^{-1}(K)$ is open in $X$ but we see that
+    $X \setmin q^{-1}(K) = q^{-1}(Y \setmin K)$ this implies that $Y \setmin K$
+    is open in $Y$ because $q$ is a quotient map. Finally, we get because
+    of this that $K$ is closed in $Y$.
+
+    \item [(d)] Let $q: X\to Y$ be a quotient map and $U \subseteq X$ be a
+    saturated open or closed subset. We want to prove that $q|_U:U \to q(U)$
+    is a quotient map.
+
+    Suppose $U$ is a saturated open subset then it is a union of fibers
+    so every open subset of $U$ is a saturated open subset then
+    $q|_U$ sends saturated open subsets to open subsets because $q$ does.
+    Therefore $q|_U$ is a quoriente map.
+    
+    The same can be shown if $U$ is a saturated closed subset because $q$
+    sends saturated closed subsets to closed subsets.
+
+    \item [(e)] Let $\{q_\alpha:X_\alpha \to Y_\alpha\}_{\alpha \in A}$
+    be an indexed family of quotient maps.
+    Let also $q:\coprod_\alpha X_\alpha \to \coprod_\alpha Y_\alpha$
+    where the restriction of $q$ to each $X_\alpha$ is equal to $q_\alpha$.
+    We want to prove that $q$ is a quotient map.
+    
+    Suppose $U \subseteq \coprod_\alpha Y_\alpha$ is an open subset,
+    we want to prove that $q^{-1}(U)$ is open in $\coprod_\alpha X_\alpha$.
+    For each $\alpha\in A$ we have that $Y_\alpha \cap U$ is open in $Y_\alpha$
+    but also we know that $q^{-1}(Y_\alpha \cap U) =
+    q|_{X_\alpha}^{-1}(Y_\alpha \cap U) = q_\alpha^{-1}(Y_\alpha \cap U)$ 
+    which is open in $X_\alpha$ since $q_\alpha$ is a quotient map.
+    Also, we know that $q^{-1}(Y_\alpha \cap U) = X_\alpha \cap q^{-1}(U)$.
+    Therefore by the disjoint union topology definition we get that
+    $q^{-1}(U)$ is open in $\coprod_\alpha X_\alpha$.
+
+    Suppose now that $q^{-1}(U)$ is open in $\coprod_\alpha X_\alpha$ for some
+    set $U \subseteq \coprod_\alpha Y_\alpha$. We want to prove that $U$
+    is open in $\coprod_\alpha Y_\alpha$.
+    Since $q^{-1}(U)$ is open then $q^{-1}(U) \cap X_\alpha$ is open in
+    $X_\alpha$ for every  $\alpha \in A$ but we know that
+    $q^{-1}(U) \cap X_\alpha = q^{-1}(Y_\alpha \cap U)$ and 
+    $q^{-1}(Y_\alpha \cap U) =
+    q|_{X_\alpha}^{-1}(Y_\alpha \cap U) = q_\alpha^{-1}(Y_\alpha \cap U)$.
+    Also, we know that every $q_\alpha$ is a quotient map so if
+    $q_\alpha^{-1}(Y_\alpha \cap U)$ is open this implies that $Y_\alpha \cap U$
+    is open in $Y_\alpha$.
+    Therefore by the disjoint union topology definition we get that
+    $U$ is open in $\coprod_\alpha Y_\alpha$.
+
+    Finally, joining above results we get that
+    $q:\coprod_\alpha X_\alpha \to \coprod_\alpha Y_\alpha$ is a quotient map.
+
+\end{itemize}
+\end{proof}
+\cleardoublepage
+\begin{proof}{\textbf{Exercise 3.72.}}
+    Let $X$ be a topological space, $Y$ a set and $q:X \to Y$ a surjective
+    map. Let us suppose we have a topology $\Topo$ and the quotient topology
+    $\Topo_q$ on $Y$ and for both the characteristic property holds.
+    We want to show that $(Y,\Topo)$ and $(Y,\Topo_q)$ are homeomorphic which
+    implies that $\Topo = \Topo_q$.
+
+    Applying the characteristic property of $(Y, \Topo)$ on $Z = (Y, \Topo_q)$
+    and taking $f = \iota$ where $\iota$ is the identity map we have that
+    \[
+        \begin{tikzcd} 
+            X \arrow[d,"q"]\arrow[rd,"\iota~\circ~q"] &\\
+            (Y, \Topo)\arrow[r,"\iota"] & (Y, \Topo_q)
+        \end{tikzcd}
+    \]
+    But we know that $\iota \circ q = q$ is continuous so $\iota$ is continuous.
+
+    On the other hand, applying the characteristic property of $(Y, \Topo_q)$
+    on $Z = (Y, \Topo)$ and taking $f = \iota$ where $\iota$ is the identity
+    map we have that
+    \[
+        \begin{tikzcd} 
+            X \arrow[d,"q"]\arrow[rd,"\iota~\circ~q"] &\\
+            (Y, \Topo_q)\arrow[r,"\iota"] & (Y, \Topo)
+        \end{tikzcd}
+    \]
+    Again we know that $\iota \circ q = q$ is continuous so $\iota$ is
+    continuous.
+
+    Therefore implies that $\iota$ is a homeomorphism between $\Topo$ and
+    $\Topo_q$.
+\end{proof}
+
+
+
+\end{document}
